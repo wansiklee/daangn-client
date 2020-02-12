@@ -15,3 +15,4 @@
 - Footer Component UI 제작
 - Header Component UI 골격만 제작
 - 홈 UI 4부분 중 첫번째 부분 제작
+- Redux ducks 패턴, store 생성

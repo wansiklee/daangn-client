@@ -9,7 +9,10 @@ import { ThemeProvider } from "styled-components";
 import GlobalStyles from "./themes/GlobalStyles";
 import Theme from "./themes/Theme";
 
+// Routes
 import Home from "./pages/Home";
+
+// Header and Footer Components
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
