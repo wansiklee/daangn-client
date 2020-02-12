@@ -10,6 +10,7 @@ import GlobalStyles from "./themes/GlobalStyles";
 import Theme from "./themes/Theme";
 
 import Home from "./pages/Home";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Redirect from="*" to="/" />
         </Switch>
       </Router>
+      <Footer />
       <GlobalStyles />
     </ThemeProvider>
   );
