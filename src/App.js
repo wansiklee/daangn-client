@@ -10,11 +10,13 @@ import GlobalStyles from "./themes/GlobalStyles";
 import Theme from "./themes/Theme";
 
 import Home from "./pages/Home";
+import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 const App = () => {
   return (
     <ThemeProvider theme={Theme}>
+      <Header />
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />
