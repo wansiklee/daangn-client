@@ -4,6 +4,8 @@
 
 ## History
 
+프로젝트 진행 과정은 트렐로에서 확인하실 수 있습니다. => [Trello](https://trello.com/b/XGdPEru6/%EB%8B%B9%EA%B7%BC%EB%A7%88%EC%BC%93-%ED%81%B4%EB%A1%A0-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8)
+
 ### 1일차
 
 - 프로젝트 생성
@@ -16,3 +18,5 @@
 - Header Component UI 골격만 제작
 - 홈 UI 4부분 중 첫번째 부분 제작
 - Redux ducks 패턴, store 생성
+
+### 3일차
