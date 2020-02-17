@@ -3,14 +3,12 @@ import ReactDOM from "react-dom";
 import App from "./App";
 
 // redux store
+import { composeWithDevTools } from "redux-devtools-extension";
 import { createStore } from "redux";
 import rootReducer from "./store/modules";
 import { Provider } from "react-redux";
 
-// redux devtools
-const devTools =
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
-const store = createStore(rootReducer, devTools);
+const store = createStore(rootReducer, composeWithDevTools());
 
 ReactDOM.render(
   <Provider store={store}>
