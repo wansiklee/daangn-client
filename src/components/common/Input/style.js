@@ -1,19 +1,14 @@
 import styled from "styled-components";
 
 export const Container = styled.input`
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #fafafa;
+  border: none;
+  border-bottom: 1px solid #4c4c4c;
   width: 100%;
-  border-radius: 4px;
-  background-color: #cdd7e0;
+  background-color: #ffffff;
   height: 35px;
-  font-size: 1rem;
+  font-size: 14px;
   padding: 0 10px;
   outline: none;
-  &:focus {
-    border: 1px solid #ff8a3d;
-  }
   & + & {
     margin-top: 1rem;
   }
