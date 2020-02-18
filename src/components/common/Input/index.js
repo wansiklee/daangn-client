@@ -8,7 +8,9 @@ const Input = ({
   value,
   onChange,
   type = "text",
-  className
+  className,
+  autoComplete,
+  name
 }) => {
   return (
     <Container
@@ -18,6 +20,8 @@ const Input = ({
       value={value}
       onChange={onChange}
       type={type}
+      autoComplete={autoComplete}
+      name={name}
     />
   );
 };
@@ -27,7 +31,9 @@ Input.propTypes = {
   required: PropTypes.bool,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  type: PropTypes.string
+  type: PropTypes.string,
+  autoComplete: PropTypes.string,
+  name: PropTypes.string.isRequired
 };
 
 export default Input;

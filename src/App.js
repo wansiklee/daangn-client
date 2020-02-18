@@ -11,6 +11,8 @@ import Theme from "./themes/Theme";
 
 // Routes
 import Home from "./pages/Home";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
 
 // Header and Footer Components
 import Header from "./components/Header";
@@ -22,7 +24,9 @@ const App = () => {
       <Header />
       <Router>
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route exact path={["/@username", "/"]} component={Home} />
+          <Route path="/signup" component={Signup} />
+          <Route paht="/login" component={Login} />
           <Redirect from="*" to="/" />
         </Switch>
       </Router>
