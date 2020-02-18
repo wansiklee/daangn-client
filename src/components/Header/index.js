@@ -1,5 +1,11 @@
 import React from "react";
-import { HeaderBar, HeaderWrapper, HeaderColumn, SearchInput } from "./style";
+import {
+  HeaderBar,
+  HeaderWrapper,
+  HeaderColumn,
+  SearchInput,
+  NavButton
+} from "./style";
 import LogoImage from "../../assets/logo-basic.svg";
 
 const Header = () => {
@@ -16,7 +22,9 @@ const Header = () => {
             <SearchInput />
           </form>
         </HeaderColumn>
-        <HeaderColumn>버튼</HeaderColumn>
+        <HeaderColumn>
+          <NavButton text="로그인" />
+        </HeaderColumn>
       </HeaderWrapper>
     </HeaderBar>
   );

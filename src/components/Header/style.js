@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Button from "../common/Button";
 
 export const HeaderBar = styled.header`
   width: 100%;
@@ -32,4 +33,15 @@ export const SearchInput = styled.input`
   text-decoration: none;
   padding: 1px 8px 1px 14px;
   height: 40px;
+`;
+
+export const NavButton = styled(Button)`
+  width: 20%;
+  background-color: #fff;
+  color: #ff8a3d;
+  border: solid 1px ${props => props.theme.primaryColor};
+  &:hover {
+    background-color: ${props => props.theme.primaryColor};
+    color: #fff;
+  }
 `;
