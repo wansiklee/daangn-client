@@ -1,6 +1,6 @@
 import React from "react";
 import { Footer, List, Author, Copyright, IconList } from "./style";
-import GithubLogo from "../../assets/logo-github.svg";
+import GithubLogo from "../../../assets/logo-github.svg";
 
 export default () => {
   return (

@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Button from "../common/Button";
+import Button from "../../common/Button";
 
-export const HeaderBar = styled.header`
+export const HeaderWrapper = styled.header`
   width: 100%;
   background-color: ${props => props.theme.bgColor};
   position: fixed;
@@ -10,13 +10,12 @@ export const HeaderBar = styled.header`
   right: 0;
   box-shadow: 0 3px 5px 0 ${props => props.theme.shadowColor};
   z-index: 2;
-`;
-
-export const HeaderWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  padding: 17px 0;
-  position: relative;
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 17px 0;
+    position: relative;
+  }
 `;
 
 export const HeaderColumn = styled.div`
