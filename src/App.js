@@ -5,14 +5,15 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
+import loadable from "@loadable/component";
 import { ThemeProvider } from "styled-components";
 import GlobalStyles from "./lib/themes/GlobalStyles";
 import Theme from "./lib/themes/Theme";
 
 // Routes
-import MainPage from "./pages/main/MainPage";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+const MainPage = loadable(() => import("./pages/main/MainPage"));
 
 const App = () => {
   return (

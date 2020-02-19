@@ -1,9 +1,13 @@
 import React from "react";
-import styled from "styled-components";
 import MainTemplate from "../../components/main/MainTemplate";
+import Home from "../../components/main/Home";
 
-const MainPage = props => {
-  return <MainTemplate>Main</MainTemplate>;
+const MainPage = () => {
+  return (
+    <MainTemplate>
+      <Home />
+    </MainTemplate>
+  );
 };
 
 export default MainPage;

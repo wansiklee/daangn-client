@@ -4,8 +4,8 @@ import PageTemplate from "../base/PageTemplate";
 
 const MainTemplateWrapper = styled(PageTemplate)``;
 
-const MainTemplate = props => {
-  return <MainTemplateWrapper />;
+const MainTemplate = ({ children }) => {
+  return <MainTemplateWrapper>{children}</MainTemplateWrapper>;
 };
 
 export default MainTemplate;
