@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.button`
+export const ButtonWrapper = styled.button`
   border: none;
   width: 100%;
   border-radius: 4px;

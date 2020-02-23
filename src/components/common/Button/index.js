@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Container } from "./style";
+import { ButtonWrapper } from "./style";
 
 const Button = ({ text, onClick, className }) => {
   return (
-    <Container className={className} onClick={onClick}>
+    <ButtonWrapper className={className} onClick={onClick}>
       {text}
-    </Container>
+    </ButtonWrapper>
   );
 };
 

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Container } from "./style";
+import { InputWrapper } from "./style";
 
 const Input = ({
   placeholder,
@@ -13,7 +13,7 @@ const Input = ({
   name
 }) => {
   return (
-    <Container
+    <InputWrapper
       className={className}
       placeholder={placeholder}
       required={required}

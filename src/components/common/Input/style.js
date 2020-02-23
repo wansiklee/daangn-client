@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.input`
+export const InputWrapper = styled.input`
   border: none;
   border-bottom: 1px solid #4c4c4c;
   width: 100%;
