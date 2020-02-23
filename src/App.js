@@ -7,8 +7,9 @@ import {
 } from "react-router-dom";
 import loadable from "@loadable/component";
 import { ThemeProvider } from "styled-components";
-import GlobalStyles from "./lib/themes/GlobalStyles";
 import Theme from "./lib/themes/Theme";
+
+import Global from "./containers/base/Global";
 
 // Routes
 import Signup from "./pages/Signup";
@@ -26,7 +27,7 @@ const App = () => {
           <Redirect from="*" to="/" />
         </Switch>
       </Router>
-      <GlobalStyles />
+      <Global />
     </ThemeProvider>
   );
 };
