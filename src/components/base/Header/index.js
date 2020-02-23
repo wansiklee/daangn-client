@@ -2,7 +2,7 @@ import React from "react";
 import { HeaderWrapper, HeaderColumn, SearchInput, NavButton } from "./style";
 import LogoImage from "../../../assets/logo-basic.svg";
 
-const Header = () => {
+const Header = ({ onLoginButtonClick }) => {
   return (
     <HeaderWrapper>
       <div className="wrapper">
@@ -17,7 +17,7 @@ const Header = () => {
           </form>
         </HeaderColumn>
         <HeaderColumn>
-          <NavButton text="로그인" />
+          <NavButton onClick={onLoginButtonClick} text="로그인" />
         </HeaderColumn>
       </div>
     </HeaderWrapper>
