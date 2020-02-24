@@ -11,13 +11,27 @@ const AuthFormWrapper = styled.div`
     font-weight: bold;
     font-size: 25px;
   }
+  .foot {
+    text-align: right;
+    span {
+      margin-right: 0.25rem;
+    }
+    a {
+      font-weight: bold;
+      color: ${props => props.theme.primaryDarker};
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
 `;
 
 const ButtonWithMarginTop = styled(Button)`
   margin-top: 1rem;
 `;
 
-const AuthForm = ({ mode }) => {
+const AuthForm = ({ mode, onChangeMode }) => {
   const emailInput = useInput("");
   const nameInput = useInput("");
   const passwordInput = useInput("");
@@ -58,6 +72,16 @@ const AuthForm = ({ mode }) => {
         )}
         <ButtonWithMarginTop text={modeText} onClick={handleSubmit} />
       </form>
+      <div className="foot">
+        <span>
+          {mode === "login"
+            ? "아직 회원이 아니신가요?"
+            : "계정이 이미 있으신가요?"}
+        </span>
+        <a onClick={onChangeMode} data-testid="switchmode">
+          {mode === "login" ? "회원가입" : "로그인"}
+        </a>
+      </div>
     </AuthFormWrapper>
   );
 };
