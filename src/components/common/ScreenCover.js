@@ -9,6 +9,7 @@ const ScreenCoverWrapper = styled.div`
   width: 100%;
   height: 100%;
   background: rgba(249, 249, 249, 0.85);
+  z-index: 10;
 
   ${props =>
     props.visible

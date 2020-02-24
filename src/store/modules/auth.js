@@ -9,9 +9,9 @@ const CLOSE_MODAL = "auth/CLOSE_MODAL";
 
 // action creators
 export const setScreenCover = createAction(SET_SCREEN_COVER);
-export const showAuthModal = createAction(SHOW_MODAL);
-export const changeAuthModalMode = createAction(CHANGE_MODAL_MODE);
-export const closeAuthModal = createAction(CLOSE_MODAL);
+export const showModal = createAction(SHOW_MODAL);
+export const changeModalMode = createAction(CHANGE_MODAL_MODE);
+export const closeModal = createAction(CLOSE_MODAL);
 
 // initial state
 const initialState = {

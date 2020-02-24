@@ -5,15 +5,12 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-import loadable from "@loadable/component";
 import { ThemeProvider } from "styled-components";
 import Theme from "./lib/themes/Theme";
-
 import Global from "./containers/base/Global";
 
 // Routes
-import Signup from "./pages/Signup";
-import Login from "./pages/Login";
+import loadable from "@loadable/component";
 const MainPage = loadable(() => import("./pages/main/MainPage"));
 
 const App = () => {
@@ -22,8 +19,6 @@ const App = () => {
       <Router>
         <Switch>
           <Route exact path={["/@username", "/"]} component={MainPage} />
-          <Route path="/signup" component={Signup} />
-          <Route paht="/login" component={Login} />
           <Redirect from="*" to="/" />
         </Switch>
       </Router>
