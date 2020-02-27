@@ -9,8 +9,7 @@ const Input = ({
   onChange,
   type = "text",
   className,
-  autoComplete,
-  name
+  autoComplete
 }) => {
   return (
     <InputWrapper
@@ -21,7 +20,6 @@ const Input = ({
       onChange={onChange}
       type={type}
       autoComplete={autoComplete}
-      name={name}
     />
   );
 };
@@ -32,8 +30,7 @@ Input.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   type: PropTypes.string,
-  autoComplete: PropTypes.string,
-  name: PropTypes.string.isRequired
+  autoComplete: PropTypes.string
 };
 
 export default Input;

@@ -27,8 +27,8 @@ const AuthFormWrapper = styled.div`
   }
 `;
 
-const ButtonWithMarginTop = styled(Button)`
-  margin-top: 1rem;
+const ButtonWithMargin = styled(Button)`
+  margin: 1rem 0;
 `;
 
 const AuthForm = ({ mode, onChangeMode }) => {
@@ -70,7 +70,7 @@ const AuthForm = ({ mode, onChangeMode }) => {
             onChange={repeatPasswordInput.onChange}
           />
         )}
-        <ButtonWithMarginTop text={modeText} onClick={handleSubmit} />
+        <ButtonWithMargin text={modeText} onClick={handleSubmit} />
       </form>
       <div className="foot">
         <span>
@@ -78,9 +78,7 @@ const AuthForm = ({ mode, onChangeMode }) => {
             ? "아직 회원이 아니신가요?"
             : "계정이 이미 있으신가요?"}
         </span>
-        <a onClick={onChangeMode} data-testid="switchmode">
-          {mode === "login" ? "회원가입" : "로그인"}
-        </a>
+        <a onClick={onChangeMode}>{mode === "login" ? "회원가입" : "로그인"}</a>
       </div>
     </AuthFormWrapper>
   );
