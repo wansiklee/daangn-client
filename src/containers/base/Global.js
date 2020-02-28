@@ -5,7 +5,7 @@ import AuthModalContainer from "../auth/AuthModalContainer";
 import GlobalStyles from "../../lib/themes/GlobalStyles";
 
 const Global = () => {
-  const cover = useSelector(state => state.auth.cover);
+  const cover = useSelector(state => state.global.cover);
   return (
     <>
       <ScreenCover visible={cover} />

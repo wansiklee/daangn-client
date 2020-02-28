@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../../components/base/Header";
 import { useDispatch } from "react-redux";
-import { setScreenCover, showModal } from "../../store/modules/auth";
+import { setScreenCover, showModal } from "../../store/modules/global";
 
 const HeaderContainer = () => {
   const dispatch = useDispatch();
