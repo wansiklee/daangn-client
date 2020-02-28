@@ -4,14 +4,17 @@ import AuthModal from "../../components/auth/AuthModal";
 import AuthForm from "../../components/auth/AuthForm";
 import { closeModal, changeModalMode } from "../../store/modules/global";
 import { login, signup } from "../../store/modules/auth";
+import { check } from "../../store/modules/user";
 
 const AuthModalContainer = () => {
-  const { visible, mode, auth, authError } = useSelector(
-    ({ global, auth }) => ({
+  const { visible, mode, auth, authError, user, userError } = useSelector(
+    ({ global, auth, user }) => ({
       visible: global.modal.visible,
       mode: global.modal.mode,
       auth: auth.auth,
-      authError: auth.authError
+      authError: auth.authError,
+      user: user.user,
+      userError: user.userError
     }),
     shallowEqual
   );
@@ -28,6 +31,7 @@ const AuthModalContainer = () => {
       : dispatch(signup({ email, username, password, repeatPassword }));
   };
 
+  // login / signup
   useEffect(() => {
     if (authError) {
       console.log("오류발생");
@@ -37,9 +41,17 @@ const AuthModalContainer = () => {
     if (auth) {
       console.log("성공");
       console.log(auth);
-      return;
+      dispatch(check());
     }
-  }, [auth, authError]);
+  }, [auth, authError, dispatch]);
+
+  // check
+  useEffect(() => {
+    if (user) {
+      console.log("user check 성공");
+      console.log(user);
+    }
+  }, [user]);
 
   return (
     <AuthModal visible={visible} onClose={onClose}>
