@@ -1,49 +1,75 @@
 import { createAction, handleActions } from "redux-actions";
-import produce from "immer";
+import { takeLatest } from "redux-saga/effects";
+import createRequestSaga from "../../lib/createRequestSaga";
+import * as authAPI from "../../lib/api/auth";
 
-// actions type;
-const SET_SCREEN_COVER = "auth/SET_SCREEN_COVER";
-const SHOW_MODAL = "auth/SHOW_MODAL";
-const CHANGE_MODAL_MODE = "auth/CHANGE_MODAL_MODE";
-const CLOSE_MODAL = "auth/CLOSE_MODAL";
+const LOGIN = "auth/LOGIN";
+const LOGIN_SUCCESS = "auth/LOGIN_SUCCESS";
+const LOGIN_FAILURE = "auth/LOGIN_FAILURE";
 
-// action creators
-export const setScreenCover = createAction(SET_SCREEN_COVER);
-export const showModal = createAction(SHOW_MODAL);
-export const changeModalMode = createAction(CHANGE_MODAL_MODE);
-export const closeModal = createAction(CLOSE_MODAL);
+const SIGNUP = "auth/SIGNUP";
+const SIGNUP_SUCCESS = "auth/SIGNUP_SUCCESS";
+const SIGNUP_FAILURE = "auth/SIGNUP_FAILURE";
 
-// initial state
+export const login = createAction(LOGIN, ({ email, password }) => ({
+  email,
+  password
+}));
+
+export const signup = createAction(
+  SIGNUP,
+  ({ email, username, password, repeatPassword }) => ({
+    email,
+    username,
+    password,
+    repeatPassword
+  })
+);
+
+const loginSaga = createRequestSaga(LOGIN, authAPI.login);
+const signupSaga = createRequestSaga(SIGNUP, authAPI.signup);
+export function* authSaga() {
+  yield takeLatest(LOGIN, loginSaga);
+  yield takeLatest(SIGNUP, signupSaga);
+}
+
 const initialState = {
-  cover: false,
-  modal: {
-    visible: false,
-    mode: "login"
-  }
+  login: {
+    email: "",
+    password: ""
+  },
+  signup: {
+    email: "",
+    username: "",
+    password: "",
+    repeatPassword: ""
+  },
+  auth: null,
+  authError: null
 };
 
-// reducer
-export default handleActions(
+const auth = handleActions(
   {
-    [SET_SCREEN_COVER]: (state, action) => ({
+    [LOGIN_SUCCESS]: (state, action) => ({
       ...state,
-      cover: action.payload
+      authError: null,
+      auth: action.payload
     }),
-    [SHOW_MODAL]: (state, action) =>
-      produce(state, draft => {
-        draft.cover = true;
-        draft.modal.mode = action.payload;
-        draft.modal.visible = true;
-      }),
-    [CHANGE_MODAL_MODE]: (state, action) =>
-      produce(state, draft => {
-        draft.modal.mode = action.payload;
-      }),
-    [CLOSE_MODAL]: state =>
-      produce(state, draft => {
-        draft.modal.visible = false;
-        draft.cover = false;
-      })
+    [LOGIN_FAILURE]: (state, action) => ({
+      ...state,
+      authError: action.payload
+    }),
+    [SIGNUP_SUCCESS]: (state, action) => ({
+      ...state,
+      authError: null,
+      auth: action.payload
+    }),
+    [SIGNUP_FAILURE]: (state, action) => ({
+      ...state,
+      authError: action.payload
+    })
   },
   initialState
 );
+
+export default auth;
