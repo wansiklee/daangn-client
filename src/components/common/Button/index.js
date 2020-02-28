@@ -2,17 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import { ButtonWrapper } from "./style";
 
-const Button = ({ text, onClick, className }) => {
-  return (
-    <ButtonWrapper className={className} onClick={onClick}>
-      {text}
-    </ButtonWrapper>
-  );
+const Button = ({ text, ...rest }) => {
+  return <ButtonWrapper {...rest}>{text}</ButtonWrapper>;
 };
 
 Button.propTypes = {
-  text: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired
+  text: PropTypes.string.isRequired
 };
 
 export default Button;

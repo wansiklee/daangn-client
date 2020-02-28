@@ -31,25 +31,31 @@ const ButtonWithMargin = styled(Button)`
   margin: 1rem 0;
 `;
 
-const AuthForm = ({ mode, onChangeMode }) => {
+const AuthForm = ({ mode, onChangeMode, onSubmit }) => {
   const emailInput = useInput("");
   const nameInput = useInput("");
   const passwordInput = useInput("");
   const repeatPasswordInput = useInput("");
 
-  const handleSubmit = () => {
-    console.log("제출 완료");
+  const handleSubmit = e => {
+    e.preventDefault();
+    const { value: email } = emailInput;
+    const { value: username } = nameInput;
+    const { value: password } = passwordInput;
+    const { value: repeatPassword } = repeatPasswordInput;
+    onSubmit({ email, username, password, repeatPassword });
   };
 
   const modeText = mode === "login" ? "로그인" : "회원가입";
   return (
     <AuthFormWrapper>
       <h2>{modeText}</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <Input
           placeholder="이메일(아이디)"
           value={emailInput.value}
           onChange={emailInput.onChange}
+          type="email"
         />
         {mode === "signup" && (
           <Input
@@ -62,15 +68,17 @@ const AuthForm = ({ mode, onChangeMode }) => {
           placeholder="비밀번호"
           value={passwordInput.value}
           onChange={passwordInput.onChange}
+          type="password"
         />
         {mode === "signup" && (
           <Input
             placeholder="비밀번호 확인"
             value={repeatPasswordInput.value}
             onChange={repeatPasswordInput.onChange}
+            type="password"
           />
         )}
-        <ButtonWithMargin text={modeText} onClick={handleSubmit} />
+        <ButtonWithMargin text={modeText} />
       </form>
       <div className="foot">
         <span>

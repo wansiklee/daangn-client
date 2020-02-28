@@ -34,16 +34,6 @@ export function* authSaga() {
 }
 
 const initialState = {
-  login: {
-    email: "",
-    password: ""
-  },
-  signup: {
-    email: "",
-    username: "",
-    password: "",
-    repeatPassword: ""
-  },
   auth: null,
   authError: null
 };
