@@ -39,8 +39,6 @@ const AuthModalContainer = () => {
       return;
     }
     if (auth) {
-      console.log("성공");
-      console.log(auth);
       dispatch(check());
     }
   }, [auth, authError, dispatch]);
@@ -48,6 +46,11 @@ const AuthModalContainer = () => {
   // check
   useEffect(() => {
     if (user) {
+      try {
+        localStorage.setItem("user", JSON.stringify(user.user));
+      } catch (e) {
+        console.log(e);
+      }
       onClose();
     }
   }, [user]);

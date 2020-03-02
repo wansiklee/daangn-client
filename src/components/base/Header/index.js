@@ -23,7 +23,7 @@ const Header = ({ onLoginButtonClick, user }) => {
           </form>
         </HeaderColumn>
         <HeaderColumn>
-          {user ? (
+          {user && user.user && user.user.username ? (
             <UserInfo>{user.user.username}</UserInfo>
           ) : (
             <LoginButton onClick={onLoginButtonClick} text="로그인" />
