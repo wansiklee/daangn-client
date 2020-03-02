@@ -1,8 +1,14 @@
 import React from "react";
-import { HeaderWrapper, HeaderColumn, SearchInput, NavButton } from "./style";
+import {
+  HeaderWrapper,
+  HeaderColumn,
+  SearchInput,
+  UserInfo,
+  LoginButton
+} from "./style";
 import LogoImage from "../../../assets/logo-basic.svg";
 
-const Header = ({ onLoginButtonClick }) => {
+const Header = ({ onLoginButtonClick, user }) => {
   return (
     <HeaderWrapper>
       <div className="wrapper">
@@ -17,7 +23,11 @@ const Header = ({ onLoginButtonClick }) => {
           </form>
         </HeaderColumn>
         <HeaderColumn>
-          <NavButton onClick={onLoginButtonClick} text="로그인" />
+          {user ? (
+            <UserInfo>{user.user.username}</UserInfo>
+          ) : (
+            <LoginButton onClick={onLoginButtonClick} text="로그인" />
+          )}
         </HeaderColumn>
       </div>
     </HeaderWrapper>

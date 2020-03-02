@@ -21,6 +21,8 @@ export const HeaderWrapper = styled.header`
 export const HeaderColumn = styled.div`
   width: 33%; /* 980px */
   text-align: center;
+  font-size: 1.7rem;
+  margin: auto;
 `;
 
 export const SearchInput = styled.input`
@@ -34,7 +36,12 @@ export const SearchInput = styled.input`
   height: 40px;
 `;
 
-export const NavButton = styled(Button)`
+export const UserInfo = styled.div`
+  font-weight: bold;
+  color: #ff8a3d;
+`;
+
+export const LoginButton = styled(Button)`
   width: 20%;
   background-color: #fff;
   color: #ff8a3d;

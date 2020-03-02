@@ -1,9 +1,10 @@
 import React from "react";
 import Header from "../../components/base/Header";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { setScreenCover, showModal } from "../../store/modules/global";
 
 const HeaderContainer = () => {
+  const { user } = useSelector(({ user }) => ({ user: user.user }));
   const dispatch = useDispatch();
 
   const handleLoginButtonClick = () => {
@@ -11,7 +12,7 @@ const HeaderContainer = () => {
     dispatch(showModal("login"));
   };
 
-  return <Header onLoginButtonClick={handleLoginButtonClick} />;
+  return <Header onLoginButtonClick={handleLoginButtonClick} user={user} />;
 };
 
 export default HeaderContainer;

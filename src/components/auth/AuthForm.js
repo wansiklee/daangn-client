@@ -66,7 +66,7 @@ const AuthForm = ({ mode, onChangeMode, onSubmit, error }) => {
         />
         {mode === "signup" && (
           <Input
-            placeholder="닉네임"
+            placeholder="닉네임(3 ~ 15자)"
             value={nameInput.value}
             onChange={nameInput.onChange}
           />
@@ -79,7 +79,7 @@ const AuthForm = ({ mode, onChangeMode, onSubmit, error }) => {
         />
         {mode === "signup" && (
           <Input
-            placeholder="비밀번호 확인"
+            placeholder="비밀번호 확인(6 ~ 20자)"
             value={repeatPasswordInput.value}
             onChange={repeatPasswordInput.onChange}
             type="password"
