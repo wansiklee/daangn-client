@@ -31,7 +31,14 @@ const ButtonWithMargin = styled(Button)`
   margin: 1rem 0;
 `;
 
-const AuthForm = ({ mode, onChangeMode, onSubmit }) => {
+const ErrorMessage = styled.div`
+  color: red;
+  text-align: center;
+  font-size: 0.8rem;
+  margin-top: 1rem;
+`;
+
+const AuthForm = ({ mode, onChangeMode, onSubmit, error }) => {
   const emailInput = useInput("");
   const nameInput = useInput("");
   const passwordInput = useInput("");
@@ -78,6 +85,7 @@ const AuthForm = ({ mode, onChangeMode, onSubmit }) => {
             type="password"
           />
         )}
+        {error && <ErrorMessage>{error}</ErrorMessage>}
         <ButtonWithMargin text={modeText} />
       </form>
       <div className="foot">
