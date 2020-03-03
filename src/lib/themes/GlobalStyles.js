@@ -9,10 +9,14 @@ export default createGlobalStyle`
         margin: 0;
         padding: 0;
     }
+    html {
+        min-width: 980px;
+        height: 100%;
+    }
     body {
         background-color:${props => props.theme.bgColor};
         min-height: calc(100% - 77px);
-        display: grid;
+        position: relative;
         font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
     a {
