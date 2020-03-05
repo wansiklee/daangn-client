@@ -1,11 +1,11 @@
 import React from "react";
 import PageTemplate from "../components/base/PageTemplate";
-import Upload from "../components/upload";
+import UploadContainer from "../containers/product/UploadContainer";
 
 const UploadPage = () => {
   return (
     <PageTemplate>
-      <Upload />
+      <UploadContainer />
     </PageTemplate>
   );
 };
