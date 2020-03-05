@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Upload from "../../components/upload";
 
 const UploadContainer = () => {
-  const [fileName, setFileName] = useState("파일선택");
+  const [fileName, setFileName] = useState("");
   const [image, setImage] = useState();
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState();

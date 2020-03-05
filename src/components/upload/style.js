@@ -43,36 +43,7 @@ export const UploadWrapper = styled.div`
 /*************
      File
  *************/
-export const File = styled.div`
-  .file-name {
-    margin-right: 12px;
-    display: inline-block;
-    padding: 9px 12px;
-    font-size: inherit;
-    font-family: inherit;
-    line-height: normal;
-    vertical-align: middle;
-    background-color: #fbfbfd;
-    border: 1px solid #e9ecf3;
-    border-radius: 3px;
-  }
-  .upload-btn {
-    cursor: pointer;
-    font-weight: 700;
-    color: #fff;
-    background-color: #6c757d;
-    border-color: #6c757d;
-    vertical-align: middle;
-    border: 1px solid transparent;
-    padding: 0.375rem 0.75rem;
-    border-radius: 0.25rem;
-  }
-  .upload-hidden {
-    position: absolute;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
-  }
-`;
+export const File = styled.div``;
 
 /*************
      Title

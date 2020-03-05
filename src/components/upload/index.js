@@ -8,6 +8,7 @@ import {
   Description,
   UploadBtn
 } from "./style";
+import Dropzone from "../common/Dropzone";
 
 const Upload = ({
   fileName,
@@ -27,22 +28,13 @@ const Upload = ({
       <h5>중고거래 상품 등록</h5>
       <form className="form-control">
         <File>
-          <input className="file-name" value={fileName} disabled />
-          <label htmlFor="upload" className="upload-btn">
-            업로드
-          </label>
-          <input
-            type="file"
-            id="upload"
-            className="upload-hidden"
-            onChange={onFileChange}
-          />
+          <Dropzone value={fileName} onChange={onFileChange} />
         </File>
         <Title>
           <input
             type="text"
             className="form"
-            placeholder="제품 이름을 입력해주세요"
+            placeholder="제품 이름을 입력해주세요."
             value={title}
             onChange={e => setTitle(e.target.value)}
           />
