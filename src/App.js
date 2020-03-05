@@ -11,7 +11,8 @@ import Global from "./containers/base/Global";
 
 // Routes
 import loadable from "@loadable/component";
-const MainPage = loadable(() => import("./pages/main/MainPage"));
+const MainPage = loadable(() => import("./pages/MainPage"));
+const UploadPage = loadable(() => import("./pages/UploadPage"));
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
       <Router>
         <Switch>
           <Route exact path={["/@username", "/"]} component={MainPage} />
+          <Route path="/upload" component={UploadPage} />
           <Redirect from="*" to="/" />
         </Switch>
       </Router>
