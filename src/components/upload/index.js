@@ -11,8 +11,7 @@ import {
 import Dropzone from "../common/Dropzone";
 
 const Upload = ({
-  fileName,
-  onFileChange,
+  onDrop,
   title,
   setTitle,
   category,
@@ -28,7 +27,7 @@ const Upload = ({
       <h5>중고거래 상품 등록</h5>
       <form className="form-control">
         <File>
-          <Dropzone value={fileName} onChange={onFileChange} />
+          <Dropzone onDrop={onDrop} />
         </File>
         <Title>
           <input

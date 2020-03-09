@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import Upload from "../../components/upload";
+import client from "../../lib/api/client";
 
 const UploadContainer = () => {
-  const [fileName, setFileName] = useState("");
-  const [image, setImage] = useState();
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState();
   const [price, setPrice] = useState();
@@ -25,10 +24,19 @@ const UploadContainer = () => {
     { value: 12, label: "기타 중고물품" }
   ];
 
-  const onFileChange = ({ target: { files } }) => {
-    if (files !== null && files.length > 0) {
-      setFileName(files[0].name);
-      setImage(files[0]);
+  const onDrop = async images => {
+    const formData = new FormData();
+    images.forEach(image => formData.append("image", image));
+
+    try {
+      const {
+        data: { files }
+      } = await client.post("/api/upload", formData, {
+        headers: { "content-type": "multipart/form-data" }
+      });
+      console.log(files);
+    } catch (e) {
+      console.log("사진 업로드에 실패하였습니다.");
     }
   };
 
@@ -38,8 +46,7 @@ const UploadContainer = () => {
 
   return (
     <Upload
-      fileName={fileName}
-      onFileChange={onFileChange}
+      onDrop={onDrop}
       title={title}
       setTitle={setTitle}
       category={category}
