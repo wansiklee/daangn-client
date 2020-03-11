@@ -3,11 +3,12 @@ import Upload from "../../components/upload";
 import client from "../../lib/api/client";
 
 const UploadContainer = () => {
+  const [path, setPath] = useState("");
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState();
   const [price, setPrice] = useState();
   const [description, setDescription] = useState("");
-  const [error, setError] = useState(null);
+  const [typeError, setTypeError] = useState(null);
 
   const categoryOptions = [
     { value: 0, label: "디지털/가전" },
@@ -28,7 +29,7 @@ const UploadContainer = () => {
   const onDrop = async image => {
     const type = image[0].type;
     if (!["image/png", "image/jpeg"].includes(type)) {
-      setError("이미지 파일(png, jpeg)만 올려주세요");
+      setTypeError("이미지 파일(png, jpeg)만 올려주세요");
       return;
     }
     const formData = new FormData();
@@ -38,11 +39,11 @@ const UploadContainer = () => {
 
     try {
       const {
-        data: { file }
+        data: { path }
       } = await client.post("/api/upload", formData, {
         headers: { "content-type": "multipart/form-data" }
       });
-      console.log(file);
+      setPath(path);
     } catch (e) {
       console.log("사진 업로드에 실패하였습니다.");
     }
@@ -54,7 +55,7 @@ const UploadContainer = () => {
 
   return (
     <Upload
-      error={error}
+      typeError={typeError}
       onDrop={onDrop}
       title={title}
       setTitle={setTitle}

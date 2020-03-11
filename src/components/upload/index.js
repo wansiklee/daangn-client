@@ -12,7 +12,7 @@ import {
 import Dropzone from "../common/Dropzone";
 
 const Upload = ({
-  error,
+  typeError,
   onDrop,
   title,
   setTitle,
@@ -31,7 +31,7 @@ const Upload = ({
         <File>
           <Dropzone onDrop={onDrop} />
         </File>
-        {error && <ErrorMessage>{error}</ErrorMessage>}
+        {typeError && <ErrorMessage>{typeError}</ErrorMessage>}
         <Title>
           <input
             type="text"
