@@ -7,6 +7,7 @@ const UploadContainer = () => {
   const [category, setCategory] = useState();
   const [price, setPrice] = useState();
   const [description, setDescription] = useState("");
+  const [error, setError] = useState(null);
 
   const categoryOptions = [
     { value: 0, label: "디지털/가전" },
@@ -24,17 +25,24 @@ const UploadContainer = () => {
     { value: 12, label: "기타 중고물품" }
   ];
 
-  const onDrop = async images => {
+  const onDrop = async image => {
+    const type = image[0].type;
+    if (!["image/png", "image/jpeg"].includes(type)) {
+      setError("이미지 파일(png, jpeg)만 올려주세요");
+      return;
+    }
     const formData = new FormData();
-    images.forEach(image => formData.append("image", image));
+    formData.append("image", image[0]);
+    // multiple image
+    // images.forEach(image => formData.append("image", image));
 
     try {
       const {
-        data: { files }
+        data: { file }
       } = await client.post("/api/upload", formData, {
         headers: { "content-type": "multipart/form-data" }
       });
-      console.log(files);
+      console.log(file);
     } catch (e) {
       console.log("사진 업로드에 실패하였습니다.");
     }
@@ -46,6 +54,7 @@ const UploadContainer = () => {
 
   return (
     <Upload
+      error={error}
       onDrop={onDrop}
       title={title}
       setTitle={setTitle}

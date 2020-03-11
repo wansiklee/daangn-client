@@ -6,11 +6,13 @@ import {
   Category,
   Price,
   Description,
-  UploadBtn
+  UploadBtn,
+  ErrorMessage
 } from "./style";
 import Dropzone from "../common/Dropzone";
 
 const Upload = ({
+  error,
   onDrop,
   title,
   setTitle,
@@ -29,6 +31,7 @@ const Upload = ({
         <File>
           <Dropzone onDrop={onDrop} />
         </File>
+        {error && <ErrorMessage>{error}</ErrorMessage>}
         <Title>
           <input
             type="text"

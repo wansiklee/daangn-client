@@ -72,3 +72,10 @@ export const UploadBtn = styled(Button)`
   margin: 80px auto;
   cursor: pointer;
 `;
+
+export const ErrorMessage = styled.div`
+  color: red;
+  text-align: center;
+  font-size: 0.8rem;
+  margin-top: 1rem;
+`;

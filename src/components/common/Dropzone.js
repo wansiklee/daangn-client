@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Dropzone from "react-dropzone";
 import styled from "styled-components";
 import { IoIosAdd } from "react-icons/io";
@@ -30,7 +30,7 @@ const DropZone = ({ onDrop }) => {
         <DropzoneWrapper {...getRootProps()}>
           <input {...getInputProps()} multiple />
           <p>
-            최대 5개의 사진을 드래그 하거나 <br /> 이곳을 클릭하여 선택하세요.
+            사진을 드래그 하거나 <br /> 이곳을 클릭하여 선택하세요.
           </p>
           <PlusIcon />
         </DropzoneWrapper>
