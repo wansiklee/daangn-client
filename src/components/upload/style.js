@@ -43,7 +43,16 @@ export const UploadWrapper = styled.div`
 /*************
      File
  *************/
-export const File = styled.div``;
+export const File = styled.div`
+  display: flex;
+  justify-content: space-between;
+  img {
+    src: ${props => props.children.props};
+    width: 300px;
+    height: 240px;
+    border: 1px solid #e9ecf3;
+  }
+`;
 
 /*************
      Title

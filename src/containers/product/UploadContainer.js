@@ -45,7 +45,7 @@ const UploadContainer = () => {
       });
       setPath(path);
     } catch (e) {
-      console.log("사진 업로드에 실패하였습니다.");
+      setTypeError("사진 업로드에 실패하였습니다. <br/> 다시 시도해 주세요.");
     }
   };
 
@@ -55,6 +55,7 @@ const UploadContainer = () => {
 
   return (
     <Upload
+      path={path}
       typeError={typeError}
       onDrop={onDrop}
       title={title}
