@@ -4,9 +4,11 @@ import {
   Wrapper,
   SearchInput,
   UserInfo,
+  UploadButton,
   LoginButton
 } from "./style";
 import LogoImage from "../../../assets/logo-basic.svg";
+import { IoMdCreate } from "react-icons/io";
 
 const Header = ({ onLoginButtonClick, user }) => {
   return (
@@ -24,7 +26,12 @@ const Header = ({ onLoginButtonClick, user }) => {
         </div>
         <div className="column">
           {user && user.user && user.user.username ? (
-            <UserInfo>{user.user.username}</UserInfo>
+            <div className="right">
+              <UserInfo>{user.user.username}</UserInfo>
+              <UploadButton href="/upload">
+                <IoMdCreate class="icon" />
+              </UploadButton>
+            </div>
           ) : (
             <LoginButton onClick={onLoginButtonClick} text="로그인" />
           )}

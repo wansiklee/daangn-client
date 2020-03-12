@@ -20,6 +20,11 @@ export const Wrapper = styled(Responsive)`
     text-align: center;
     font-size: 1.7rem;
     margin: auto;
+    .right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 `;
 
@@ -35,6 +40,21 @@ export const SearchInput = styled.input`
 export const UserInfo = styled.div`
   font-weight: bold;
   color: ${props => props.theme.primaryColor};
+  margin-right: 20px;
+`;
+
+export const UploadButton = styled.a`
+  width: 45px;
+  background-color: ${props => props.theme.primaryColor};
+  color: ${props => props.theme.bgColor};
+  border-radius: 4px;
+  &:hover {
+    background-color: ${props => props.theme.primaryDarker};
+  }
+
+  .icon {
+    height: 1.2rem;
+  }
 `;
 
 export const LoginButton = styled(Button)`
