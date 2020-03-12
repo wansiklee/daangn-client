@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Upload from "../../components/upload";
-import client from "../../lib/api/client";
-import { uploadImage } from "../../lib/api/product";
+import { uploadImage, upload } from "../../lib/api/product";
 
 const UploadContainer = () => {
   const [path, setPath] = useState("");
@@ -42,9 +41,7 @@ const UploadContainer = () => {
     try {
       const {
         data: { path }
-      } = await client.post("/api/upload", formData, {
-        headers: { "content-type": "multipart/form-data" }
-      });
+      } = await uploadImage({ formData });
       setPath(path);
     } catch (e) {
       setTypeError("사진 업로드에 실패하였습니다. 다시 시도해 주세요.");
@@ -58,13 +55,7 @@ const UploadContainer = () => {
   const onSubmit = async event => {
     event.preventDefault();
     try {
-      await client.post("/api/products", {
-        image: path,
-        title,
-        description,
-        price,
-        category
-      });
+      await upload({ image: path, title, description, price, category });
     } catch (e) {
       setError(e.response.data.msg);
     }
