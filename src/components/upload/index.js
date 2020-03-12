@@ -12,6 +12,7 @@ import {
 import Dropzone from "../common/Dropzone";
 
 const Upload = ({
+  onSubmit,
   path,
   typeError,
   onDrop,
@@ -23,12 +24,13 @@ const Upload = ({
   price,
   setPrice,
   description,
-  setDescription
+  setDescription,
+  error
 }) => {
   return (
     <UploadWrapper>
       <h5>중고거래 상품 등록</h5>
-      <form className="form-control">
+      <form className="form-control" onSubmit={onSubmit}>
         <File>
           <Dropzone onDrop={onDrop} />
           {path && <img src={path} />}
@@ -75,6 +77,7 @@ const Upload = ({
             style={{ height: 250 }}
           />
         </Description>
+        {error && <ErrorMessage>{error}</ErrorMessage>}
         <UploadBtn text="상품 등록하기" />
       </form>
     </UploadWrapper>

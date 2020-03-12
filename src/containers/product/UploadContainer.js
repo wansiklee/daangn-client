@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Upload from "../../components/upload";
 import client from "../../lib/api/client";
+import { uploadImage } from "../../lib/api/product";
 
 const UploadContainer = () => {
   const [path, setPath] = useState("");
@@ -9,6 +10,7 @@ const UploadContainer = () => {
   const [price, setPrice] = useState();
   const [description, setDescription] = useState("");
   const [typeError, setTypeError] = useState(null);
+  const [error, setError] = useState(null);
 
   const categoryOptions = [
     { value: 0, label: "디지털/가전" },
@@ -45,7 +47,7 @@ const UploadContainer = () => {
       });
       setPath(path);
     } catch (e) {
-      setTypeError("사진 업로드에 실패하였습니다. <br/> 다시 시도해 주세요.");
+      setTypeError("사진 업로드에 실패하였습니다. 다시 시도해 주세요.");
     }
   };
 
@@ -53,8 +55,24 @@ const UploadContainer = () => {
     setCategory(value ? Number(value) : undefined);
   };
 
+  const onSubmit = async event => {
+    event.preventDefault();
+    try {
+      await client.post("/api/products", {
+        image: path,
+        title,
+        description,
+        price,
+        category
+      });
+    } catch (e) {
+      setError(e.response.data.msg);
+    }
+  };
+
   return (
     <Upload
+      onSubmit={onSubmit}
       path={path}
       typeError={typeError}
       onDrop={onDrop}
@@ -67,6 +85,7 @@ const UploadContainer = () => {
       setPrice={setPrice}
       description={description}
       setDescription={setDescription}
+      error={error}
     />
   );
 };
