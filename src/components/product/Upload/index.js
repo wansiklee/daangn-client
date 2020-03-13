@@ -9,7 +9,7 @@ import {
   UploadBtn,
   ErrorMessage
 } from "./style";
-import Dropzone from "../common/Dropzone";
+import Dropzone from "../../common/Dropzone";
 
 const Upload = ({
   onSubmit,

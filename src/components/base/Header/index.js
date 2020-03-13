@@ -29,7 +29,7 @@ const Header = ({ onLoginButtonClick, user }) => {
             <div className="right">
               <UserInfo>{user.user.username}</UserInfo>
               <UploadButton href="/upload">
-                <IoMdCreate class="icon" />
+                <IoMdCreate className="icon" />
               </UploadButton>
             </div>
           ) : (

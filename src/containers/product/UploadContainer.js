@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import Upload from "../../components/upload";
+import Upload from "../../components/product/Upload";
 import { uploadImage, upload } from "../../lib/api/product";
+import { withRouter } from "react-router-dom";
 
-const UploadContainer = () => {
+const UploadContainer = ({ history }) => {
   const [path, setPath] = useState("");
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState();
@@ -55,7 +56,16 @@ const UploadContainer = () => {
   const onSubmit = async event => {
     event.preventDefault();
     try {
-      await upload({ image: path, title, description, price, category });
+      const {
+        data: { product }
+      } = await upload({
+        image: path,
+        title,
+        description,
+        price,
+        category
+      });
+      history.push(`/product/${product._id}`);
     } catch (e) {
       setError(e.response.data.msg);
     }
@@ -81,4 +91,4 @@ const UploadContainer = () => {
   );
 };
 
-export default UploadContainer;
+export default withRouter(UploadContainer);

@@ -15,7 +15,7 @@ export const upload = async ({
   price,
   description
 }) => {
-  await client.post("/api/products", {
+  return await client.post("/api/products", {
     image,
     title,
     category,
