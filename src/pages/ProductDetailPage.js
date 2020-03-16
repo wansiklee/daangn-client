@@ -1,11 +1,11 @@
 import React from "react";
 import PageTemplate from "../components/base/PageTemplate";
-import Detail from "../components/product/Detail";
+import DetailContainer from "../containers/product/DetailContainer";
 
 const ProductDetailPage = () => {
   return (
     <PageTemplate>
-      <Detail />
+      <DetailContainer />
     </PageTemplate>
   );
 };

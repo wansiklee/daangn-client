@@ -23,3 +23,8 @@ export const upload = async ({
     description
   });
 };
+
+// Product Detail
+export const detail = async id => {
+  return await client.get(`/api/products/${id}`);
+};
