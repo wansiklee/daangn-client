@@ -65,7 +65,7 @@ const UploadContainer = ({ history }) => {
         price,
         category
       });
-      history.push(`/product/${product._id}`);
+      history.push(`/${product._id}`);
     } catch (e) {
       setError(e.response.data.msg);
     }
