@@ -1,5 +1,6 @@
 import React from "react";
 import { DetailWrapper, Image, Profile, Description } from "./style";
+import { getCategoryName } from "../../../lib/utils";
 
 const Detail = ({
   image,
@@ -34,7 +35,7 @@ const Detail = ({
       <Description>
         <h1>{title}</h1>
         <p className="category">
-          {category + " ∙ "}
+          {getCategoryName(category) + " ∙ "}
           <time>{createdAt}</time>
         </p>
         <p className="price">{`${price}원`}</p>
