@@ -1,9 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import { detail } from "../../lib/api/product";
 import Detail from "../../components/product/Detail";
 
 const DetailContainer = ({ match }) => {
+  const [image, setImage] = useState("");
+  const [user, setUser] = useState({});
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState(0);
+  const [category, setCategory] = useState();
+  const [createdAt, setCreatedAt] = useState("");
+  const [likes, setLikes] = useState([]);
+  const [comments, setComments] = useState([]);
+
   const {
     params: { productId }
   } = match;
@@ -13,12 +23,35 @@ const DetailContainer = ({ match }) => {
       const {
         data: { data }
       } = await detail(productId);
+
       console.log(data);
+
+      setImage(data.image);
+      setUser(data.user);
+      setTitle(data.title);
+      setDescription(data.description);
+      setPrice(data.price);
+      setCategory(data.category);
+      setCreatedAt(data.createdAt);
+      setLikes(data.likes);
+      setComments(data.comments);
     };
     fetchProduct();
   }, []);
 
-  return <Detail />;
+  return (
+    <Detail
+      image={image}
+      user={user}
+      title={title}
+      description={description}
+      price={price}
+      category={category}
+      createdAt={createdAt}
+      likes={likes}
+      comments={comments}
+    />
+  );
 };
 
 export default withRouter(DetailContainer);
