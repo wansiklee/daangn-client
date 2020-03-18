@@ -22,7 +22,7 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={MainPage} />
           <Route path="/upload" component={UploadPage} />
-          <Route path="/:productId" component={ProductDetailPage} />
+          <Route path="/products/:productId" component={ProductDetailPage} />
           <Redirect from="*" to="/" />
         </Switch>
       </Router>
