@@ -20,21 +20,23 @@ const DetailContainer = ({ match }) => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const {
-        data: { data }
-      } = await detail(productId);
+      try {
+        const {
+          data: { data }
+        } = await detail(productId);
 
-      console.log(data);
-
-      setImage(data.image);
-      setUser(data.user);
-      setTitle(data.title);
-      setDescription(data.description);
-      setPrice(data.price);
-      setCategory(data.category);
-      setCreatedAt(data.createdAt);
-      setLikes(data.likes);
-      setComments(data.comments);
+        setImage(data.image);
+        setUser(data.user);
+        setTitle(data.title);
+        setDescription(data.description);
+        setPrice(data.price);
+        setCategory(data.category);
+        setCreatedAt(data.createdAt);
+        setLikes(data.likes);
+        setComments(data.comments);
+      } catch (e) {
+        console.log(e);
+      }
     };
     fetchProduct();
   }, []);
