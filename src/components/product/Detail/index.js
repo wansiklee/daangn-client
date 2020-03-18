@@ -1,8 +1,6 @@
 import React from "react";
 import { DetailWrapper, Image, Profile, Description } from "./style";
-import { getCategoryName } from "../../../lib/utils";
-import moment from "moment";
-import "moment/locale/ko";
+import { getCategoryName, getTimeFromNow } from "../../../lib/utils";
 
 const Detail = ({
   image,
@@ -38,7 +36,7 @@ const Detail = ({
         <h1>{title}</h1>
         <p className="category">
           {getCategoryName(category) + " ∙ "}
-          <time>{moment(createdAt).fromNow()}</time>
+          <time>{getTimeFromNow(createdAt)}</time>
         </p>
         <p className="price">{`${price}원`}</p>
         <div className="description">

@@ -1,3 +1,6 @@
+import moment from "moment";
+import "moment/locale/ko";
+
 export const getCategoryName = categoryNumber => {
   switch (categoryNumber) {
     case 0:
@@ -29,4 +32,8 @@ export const getCategoryName = categoryNumber => {
     default:
       return "";
   }
+};
+
+export const getTimeFromNow = createdAt => {
+  return moment(createdAt).fromNow();
 };
