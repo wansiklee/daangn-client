@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
-import { detail } from "../../lib/api/product";
+import { getProduct } from "../../lib/api/product";
 import Detail from "../../components/product/Detail";
 
 const DetailContainer = ({ match }) => {
@@ -23,7 +23,7 @@ const DetailContainer = ({ match }) => {
       try {
         const {
           data: { data }
-        } = await detail(productId);
+        } = await getProduct(productId);
 
         setImage(data.image);
         setUser(data.user);

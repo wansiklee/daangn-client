@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Upload from "../../components/product/Upload";
-import { uploadImage, upload } from "../../lib/api/product";
+import { uploadImage, productUpload } from "../../lib/api/product";
 import { withRouter } from "react-router-dom";
 
 const UploadContainer = ({ history }) => {
@@ -58,7 +58,7 @@ const UploadContainer = ({ history }) => {
     try {
       const {
         data: { product }
-      } = await upload({
+      } = await productUpload({
         image: path,
         title,
         description,
