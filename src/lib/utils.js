@@ -37,3 +37,8 @@ export const getCategoryName = categoryNumber => {
 export const getTimeFromNow = createdAt => {
   return moment(createdAt).fromNow();
 };
+
+export const getPriceComma = price => {
+  const regexp = /\B(?=(\d{3})+(?!\d))/g;
+  return price.toString().replace(regexp, ",");
+};

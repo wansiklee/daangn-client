@@ -1,6 +1,10 @@
 import React from "react";
 import { DetailWrapper, Image, Profile, Description } from "./style";
-import { getCategoryName, getTimeFromNow } from "../../../lib/utils";
+import {
+  getCategoryName,
+  getTimeFromNow,
+  getPriceComma
+} from "../../../lib/utils";
 
 const Detail = ({
   image,
@@ -38,7 +42,7 @@ const Detail = ({
           {getCategoryName(category) + " ∙ "}
           <time>{getTimeFromNow(createdAt)}</time>
         </p>
-        <p className="price">{`${price}원`}</p>
+        <p className="price">{`${getPriceComma(price)}원`}</p>
         <div className="description">
           <p>{description}</p>
         </div>

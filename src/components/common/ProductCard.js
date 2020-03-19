@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { getPriceComma } from "../../lib/utils";
 
 const CardWrapper = styled.div`
   display: inline-block;
@@ -60,7 +61,7 @@ const ProductCard = ({ product }) => {
         </div>
         <div className="card-desc">
           <h2 className="card-title">{product.title}</h2>
-          <div className="card-price">{product.price}원</div>
+          <div className="card-price">{getPriceComma(product.price)}원</div>
           <div className="card-counts">
             <span>관심 {product.likes.length} ∙ </span>
             <span>댓글 {product.comments.length}</span>
