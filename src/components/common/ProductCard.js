@@ -4,12 +4,21 @@ import { Link } from "react-router-dom";
 import { getPriceComma } from "../../lib/utils";
 
 const CardWrapper = styled.div`
+  text-align: left;
   display: inline-block;
   border-radius: 8px;
   border: 1px solid #e9ecef;
   width: calc(25% - 34px);
   margin-right: 34px;
+  :nth-child(4n) {
+    margin-right: 0;
+  }
   margin-bottom: 40px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 16px -3px rgba(20, 20, 50, 0.12);
+  }
 `;
 
 const SLink = styled(Link)`
