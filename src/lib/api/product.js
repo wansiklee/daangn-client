@@ -28,3 +28,8 @@ export const productUpload = async ({
 export const getProduct = async id => {
   return await client.get(`/api/products/${id}`);
 };
+
+// Product List
+export const getAllProducts = async () => {
+  return await client.get(`/api/products`);
+};

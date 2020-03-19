@@ -13,6 +13,7 @@ import Global from "./containers/base/Global";
 import loadable from "@loadable/component";
 const MainPage = loadable(() => import("./pages/MainPage"));
 const UploadPage = loadable(() => import("./pages/UploadPage"));
+const ProductListPage = loadable(() => import("./pages/ProductListPage"));
 const ProductDetailPage = loadable(() => import("./pages/ProductDetailPage"));
 
 const App = () => {
@@ -20,8 +21,9 @@ const App = () => {
     <ThemeProvider theme={Theme}>
       <Router>
         <Switch>
-          <Route exact path="/" component={MainPage} />
+          <Route path="/" component={MainPage} exact />
           <Route path="/upload" component={UploadPage} />
+          <Route path="/products" component={ProductListPage} exact />
           <Route path="/products/:productId" component={ProductDetailPage} />
           <Redirect from="*" to="/" />
         </Switch>
