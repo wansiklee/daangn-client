@@ -11,6 +11,10 @@ export const Image = styled.div`
   height: 500px;
   border-radius: 8px;
   overflow: hidden;
+  img {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 export const Profile = styled.div`
