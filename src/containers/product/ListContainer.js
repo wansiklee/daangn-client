@@ -1,21 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { getAllProducts } from "../../lib/api/product";
+import List from "../../components/product/List";
 
 const ListContainer = () => {
+  const [data, setData] = useState([]);
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const {
           data: { data }
         } = await getAllProducts();
-        console.log(data);
+        setData(data);
       } catch (e) {
         console.log(e);
       }
     };
     fetchProducts();
   }, []);
-  return <div style={{ paddingTop: 100 }}>Products List</div>;
+  return <List products={data} />;
 };
 
 export default ListContainer;
