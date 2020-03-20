@@ -4,11 +4,11 @@ import HotProducts from "./HotProducts";
 import Introduction from "./Introduction";
 import Reviews from "./Reviews";
 
-const Home = () => {
+const Home = ({ products }) => {
   return (
     <>
       <HeaderTop />
-      <HotProducts />
+      <HotProducts products={products} />
       <Introduction />
       <Reviews />
     </>
