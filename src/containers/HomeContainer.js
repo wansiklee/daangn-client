@@ -9,7 +9,7 @@ const HomeContainer = () => {
       try {
         const {
           data: { data }
-        } = await getAllProducts();
+        } = await getAllProducts(false);
         setData(data.slice(0, 10));
       } catch (e) {
         console.log(e);

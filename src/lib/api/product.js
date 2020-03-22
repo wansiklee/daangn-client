@@ -30,6 +30,8 @@ export const getProduct = async id => {
 };
 
 // Product List
-export const getAllProducts = async () => {
-  return await client.get(`/api/products`);
+export const getAllProducts = async category => {
+  return category
+    ? await client.get(`/api/products?category=${category}`)
+    : await client.get(`/api/products`);
 };
