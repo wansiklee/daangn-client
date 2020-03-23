@@ -52,7 +52,6 @@ const NoProducts = styled.h1`
 const ListWrapper = styled.div`
   width: 980px;
   margin: 0 auto;
-  text-align: center;
 `;
 
 const MoreLink = styled.div`
@@ -64,6 +63,8 @@ const MoreLink = styled.div`
 
   margin-bottom: 40px;
   transition: transform 0.3s, box-shadow 0.3s;
+  vertical-align: top;
+  text-align: center;
   &:hover {
     transform: translateY(-4px);
     box-shadow: 0 16px 16px -3px rgba(20, 20, 50, 0.12);
