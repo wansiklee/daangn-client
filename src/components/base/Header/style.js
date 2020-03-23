@@ -16,25 +16,42 @@ export const Wrapper = styled(Responsive)`
   align-items: center;
   padding: 17px 0;
   .column {
-    width: 33%; /* 980px */
+    width: 44%;
     text-align: center;
     font-size: 1.7rem;
-    margin: auto;
+    .search {
+      border-radius: 4px;
+      border: solid 1px #ff8a3d;
+      text-decoration: none;
+      padding: 0px 8px 0px 14px;
+      form {
+        display: flex;
+        input {
+          width: 300px;
+          height: 40px;
+          border: none;
+          font-size: 18px;
+          color: #212529;
+          margin-right: 70px;
+          outline: none;
+        }
+        button {
+          background: none;
+          border: none;
+          font: inherit;
+          cursor: pointer;
+          .search-icon {
+            fill: #ff8a3d;
+          }
+        }
+      }
+    }
     .right {
       display: flex;
       align-items: center;
       justify-content: center;
     }
   }
-`;
-
-export const SearchInput = styled.input`
-  background-color: ${props => props.theme.bgColor};
-  border: solid 1px ${props => props.theme.primaryColor};
-  border-radius: 4px;
-  outline: none;
-  padding: 1px 8px 1px 14px;
-  height: 40px;
 `;
 
 export const UserInfo = styled.div`

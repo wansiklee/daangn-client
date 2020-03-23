@@ -2,13 +2,12 @@ import React from "react";
 import {
   HeaderWrapper,
   Wrapper,
-  SearchInput,
   UserInfo,
   UploadButton,
   LoginButton
 } from "./style";
 import LogoImage from "../../../assets/logo-basic.svg";
-import { IoMdCreate } from "react-icons/io";
+import { IoMdCreate, IoIosSearch } from "react-icons/io";
 
 const Header = ({ onLoginButtonClick, user }) => {
   return (
@@ -20,9 +19,14 @@ const Header = ({ onLoginButtonClick, user }) => {
           </a>
         </div>
         <div className="column">
-          <form>
-            <SearchInput />
-          </form>
+          <div className="search">
+            <form>
+              <input type="text" placeholder="상품을 검색해보세요." />
+              <button>
+                <IoIosSearch className="search-icon" />
+              </button>
+            </form>
+          </div>
         </div>
         <div className="column">
           {user && user.user && user.user.username ? (
