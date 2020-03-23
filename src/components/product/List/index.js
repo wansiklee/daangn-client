@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { IoIosAdd } from "react-icons/io";
 
 const Title = styled.div`
-  padding-top: 100px;
+  padding-top: 120px;
   font-size: 32px;
   font-weight: 600;
   letter-spacing: -0.6px;
@@ -18,6 +18,27 @@ const Divider = styled.div`
   border-top: 2px solid #ff8a3d;
   margin: 0 auto;
   margin-bottom: 50px;
+`;
+
+const Order = styled.div`
+  width: 980px;
+  margin: 0 auto;
+  text-align: right;
+  margin-bottom: 30px;
+  select {
+    appearance: none;
+    border: solid 1px #e9ecef;
+    border-radius: 100px;
+    padding: 10px 44px 10px 20px;
+    font-size: 17px;
+    letter-spacing: -0.6px;
+    text-align: left;
+    background: url(https://d1unjqcospf8gs.cloudfront.net/assets/home/articles/icon-arrow-down-2d404f1988c159b270a18a0bb46b119f0065d38c18c1efc0b51d0d8c0af990f2.png)
+      no-repeat 89% 50%;
+    &:hover {
+      color: #98a8b9;
+    }
+  }
 `;
 
 const ListWrapper = styled.div`
@@ -60,11 +81,29 @@ const PlusIcon = styled(IoIosAdd)`
   height: 50px;
 `;
 
-const List = ({ products, home }) => {
+const List = ({
+  products,
+  home,
+  categoryOptions,
+  category,
+  onCategoryChange
+}) => {
   return (
     <>
-      {home ? <Title>당근마켓 인기 매물</Title> : <Title>중고 매물</Title>}
+      {home ? <Title>당근마켓 인기 매물</Title> : <Title>인기 중고 매물</Title>}
       <Divider />
+      {!home && (
+        <Order>
+          <select value={category} onChange={onCategoryChange}>
+            <option>카테고리 선택</option>
+            {categoryOptions.map((item, index) => (
+              <option key={index} value={item.value}>
+                {item.label}
+              </option>
+            ))}
+          </select>
+        </Order>
+      )}
       <ListWrapper>
         {products.map((p, i) => (
           <ProductCard key={i} product={p} />
