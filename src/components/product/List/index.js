@@ -41,6 +41,14 @@ const Order = styled.div`
   }
 `;
 
+const NoProducts = styled.h1`
+  width: 980px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 100px;
+`;
+
 const ListWrapper = styled.div`
   width: 980px;
   margin: 0 auto;
@@ -104,6 +112,9 @@ const List = ({
           </select>
         </Order>
       )}
+      {products.length === 0 ? (
+        <NoProducts>매물이 아직 없습니다. ㅠㅠ</NoProducts>
+      ) : null}
       <ListWrapper>
         {products.map((p, i) => (
           <ProductCard key={i} product={p} />

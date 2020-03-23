@@ -32,7 +32,6 @@ const ListContainer = () => {
         const {
           data: { data }
         } = await getAllProducts(category);
-        console.log(data);
         setData(data);
       } catch (e) {
         console.log(e);
