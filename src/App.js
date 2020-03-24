@@ -15,6 +15,7 @@ const MainPage = loadable(() => import("./pages/MainPage"));
 const UploadPage = loadable(() => import("./pages/UploadPage"));
 const ProductListPage = loadable(() => import("./pages/ProductListPage"));
 const ProductDetailPage = loadable(() => import("./pages/ProductDetailPage"));
+const SearchPage = loadable(() => import("./pages/SearchPage"));
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/upload" component={UploadPage} />
           <Route path="/products" component={ProductListPage} exact />
           <Route path="/products/:productId" component={ProductDetailPage} />
+          <Route path="/search" component={SearchPage} />
           <Redirect from="*" to="/" />
         </Switch>
       </Router>
