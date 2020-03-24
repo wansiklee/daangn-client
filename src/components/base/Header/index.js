@@ -9,7 +9,7 @@ import {
 import LogoImage from "../../../assets/logo-basic.svg";
 import { IoMdCreate, IoIosSearch } from "react-icons/io";
 
-const Header = ({ onLoginButtonClick, user }) => {
+const Header = ({ onLoginButtonClick, user, value, onChange, onSubmit }) => {
   return (
     <HeaderWrapper>
       <Wrapper>
@@ -20,8 +20,13 @@ const Header = ({ onLoginButtonClick, user }) => {
         </div>
         <div className="column">
           <div className="search">
-            <form>
-              <input type="text" placeholder="상품을 검색해보세요." />
+            <form onSubmit={onSubmit}>
+              <input
+                type="text"
+                placeholder="상품을 검색해보세요."
+                value={value}
+                onChange={onChange}
+              />
               <button>
                 <IoIosSearch className="search-icon" />
               </button>

@@ -1,18 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../../components/base/Header";
 import { useSelector, useDispatch } from "react-redux";
 import { setScreenCover, showModal } from "../../store/modules/global";
+import { withRouter } from "react-router-dom";
 
-const HeaderContainer = () => {
+const HeaderContainer = ({ history }) => {
   const { user } = useSelector(({ user }) => ({ user: user.user }));
   const dispatch = useDispatch();
+  const [value, setValue] = useState("");
 
   const handleLoginButtonClick = () => {
     dispatch(setScreenCover(true));
     dispatch(showModal("login"));
   };
 
-  return <Header onLoginButtonClick={handleLoginButtonClick} user={user} />;
+  const onChange = ({ target: { value } }) => {
+    setValue(value);
+  };
+
+  const onSubmit = event => {
+    event.preventDefault();
+    history.push(`/search?term=${value}`);
+  };
+
+  return (
+    <Header
+      onLoginButtonClick={handleLoginButtonClick}
+      user={user}
+      value={value}
+      onChange={onChange}
+      onSubmit={onSubmit}
+    />
+  );
 };
 
-export default HeaderContainer;
+export default withRouter(HeaderContainer);
