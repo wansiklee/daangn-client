@@ -20,6 +20,9 @@ const HeaderContainer = ({ history }) => {
 
   const onSubmit = event => {
     event.preventDefault();
+    if (value === "") {
+      return;
+    }
     history.push(`/search?term=${value}`);
   };
 

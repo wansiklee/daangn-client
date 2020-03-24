@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import ResultCard from "../common/ResultCard";
+import NoResult from "../common/NoResult";
 
 const SearchResult = styled.div`
   background: #f8f9fa;
@@ -52,15 +53,19 @@ const SearchResult = styled.div`
   }
 `;
 
-const Search = ({ products, onClick, page, lastPage }) => {
+const Search = ({ loading, products, onClick, page, lastPage, term }) => {
   return (
     <SearchResult>
       <div className="wrapper">
         <div className="products-wrapper">
           <p className="wrapper-title">중고거래</p>
-          {products.length !== 0 &&
-            products.map((p, i) => <ResultCard key={i} product={p} />)}
+          {products.map((p, i) => (
+            <ResultCard key={i} product={p} />
+          ))}
         </div>
+        {!loading && products && products.length === 0 ? (
+          <NoResult text={term} />
+        ) : null}
         {page !== lastPage && (
           <div className="more-button" onClick={onClick}>
             <span>더보기</span>

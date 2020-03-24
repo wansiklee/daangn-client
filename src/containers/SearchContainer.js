@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import { getSearchProducts } from "../lib/api/product";
 
 const SearchContainer = ({ location }) => {
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
@@ -11,12 +12,19 @@ const SearchContainer = ({ location }) => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const {
-        data: { data },
-        headers: { lastpage }
-      } = await getSearchProducts({ term, page });
-      setData(data);
-      setLastPage(Number(lastpage));
+      try {
+        setLoading(true);
+        const {
+          data: { data },
+          headers: { lastpage }
+        } = await getSearchProducts({ term, page });
+        setData(data);
+        setLastPage(Number(lastpage));
+      } catch (e) {
+        console.log(e);
+      } finally {
+        setLoading(false);
+      }
     };
     fetchProducts();
   }, [term, page]);
@@ -26,7 +34,14 @@ const SearchContainer = ({ location }) => {
   };
 
   return (
-    <Search products={data} onClick={onClick} page={page} lastPage={lastPage} />
+    <Search
+      loading={loading}
+      products={data}
+      onClick={onClick}
+      page={page}
+      lastPage={lastPage}
+      term={term}
+    />
   );
 };
 
