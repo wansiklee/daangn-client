@@ -35,3 +35,8 @@ export const getAllProducts = async category => {
     ? await client.get(`/api/products?category=${category}`)
     : await client.get(`/api/products`);
 };
+
+// Product Search
+export const getSearchProducts = async ({ term, page }) => {
+  return await client.get(`/api/products/search?term=${term}&page=${page}`);
+};
