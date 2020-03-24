@@ -21,6 +21,34 @@ const SearchResult = styled.div`
         margin: 20px 0;
       }
     }
+    .more-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 50px;
+      cursor: pointer;
+      width: 100%;
+      color: #868e96;
+      font-size: 16px;
+      border-top: 1px solid #e9ecef;
+      .more-loading {
+        display: none;
+        .loader {
+          text-indent: -9999em;
+          width: 24px;
+          height: 24px;
+          border-radius: 100%;
+          background: linear-gradient(
+            to top right,
+            #ff8a3d 25%,
+            rgba(255, 255, 255, 0) 70%
+          );
+          position: relative;
+          animation: animation 1.4s infinite linear;
+          transform: translateZ(0);
+        }
+      }
+    }
   }
 `;
 
@@ -33,6 +61,14 @@ const Search = ({ products, onClick, page, lastPage }) => {
           {products.length !== 0 &&
             products.map((p, i) => <ResultCard key={i} product={p} />)}
         </div>
+        {page !== lastPage && (
+          <div className="more-button" onClick={onClick}>
+            <span>더보기</span>
+            <div className="more-loading">
+              <div className="loader"></div>
+            </div>
+          </div>
+        )}
       </div>
     </SearchResult>
   );
