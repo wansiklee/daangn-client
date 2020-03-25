@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import Input from "../../components/common/Input";
 import Button from "../../components/common/Button";
-import useInput from "../../lib/hooks/useInput";
 
 const AuthFormWrapper = styled.div`
   h2 {
@@ -38,50 +37,49 @@ const ErrorMessage = styled.div`
   margin-top: 1rem;
 `;
 
-const AuthForm = ({ mode, onChangeMode, onSubmit, error }) => {
-  const emailInput = useInput("");
-  const nameInput = useInput("");
-  const passwordInput = useInput("");
-  const repeatPasswordInput = useInput("");
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    const { value: email } = emailInput;
-    const { value: username } = nameInput;
-    const { value: password } = passwordInput;
-    const { value: repeatPassword } = repeatPasswordInput;
-    onSubmit({ email, username, password, repeatPassword });
-  };
-
+const AuthForm = ({
+  mode,
+  onChangeMode,
+  email,
+  setEmail,
+  username,
+  setUsername,
+  password,
+  setPassword,
+  repeatPassword,
+  setRepeatPassword,
+  onSubmit,
+  error
+}) => {
   const modeText = mode === "login" ? "로그인" : "회원가입";
   return (
     <AuthFormWrapper>
       <h2>{modeText}</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={onSubmit}>
         <Input
           placeholder="이메일(아이디)"
-          value={emailInput.value}
-          onChange={emailInput.onChange}
+          value={email}
+          onChange={e => setEmail(e.target.value)}
           type="email"
         />
         {mode === "signup" && (
           <Input
             placeholder="닉네임(3 ~ 15자)"
-            value={nameInput.value}
-            onChange={nameInput.onChange}
+            value={username}
+            onChange={e => setUsername(e.target.value)}
           />
         )}
         <Input
           placeholder="비밀번호"
-          value={passwordInput.value}
-          onChange={passwordInput.onChange}
+          value={password}
+          onChange={e => setPassword(e.target.value)}
           type="password"
         />
         {mode === "signup" && (
           <Input
             placeholder="비밀번호 확인(6 ~ 20자)"
-            value={repeatPasswordInput.value}
-            onChange={repeatPasswordInput.onChange}
+            value={repeatPassword}
+            onChange={e => setRepeatPassword(e.target.value)}
             type="password"
           />
         )}

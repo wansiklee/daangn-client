@@ -29,8 +29,8 @@ const App = () => {
           <Route path="/search" component={SearchPage} />
           <Redirect from="*" to="/" />
         </Switch>
+        <Global />
       </Router>
-      <Global />
     </ThemeProvider>
   );
 };

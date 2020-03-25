@@ -5,17 +5,22 @@ import AuthForm from "../../components/auth/AuthForm";
 import { closeModal, changeModalMode } from "../../store/modules/global";
 import { login, signup } from "../../store/modules/auth";
 import { check } from "../../store/modules/user";
+import { withRouter } from "react-router-dom";
 
-const AuthModalContainer = () => {
+const AuthModalContainer = ({ history }) => {
   const [error, setError] = useState(null);
-  const { visible, mode, auth, authError, user, userError } = useSelector(
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [repeatPassword, setRepeatPassword] = useState("");
+
+  const { visible, mode, auth, authError, user } = useSelector(
     ({ global, auth, user }) => ({
       visible: global.modal.visible,
       mode: global.modal.mode,
       auth: auth.auth,
       authError: auth.authError,
-      user: user.user,
-      userError: user.userError
+      user: user.user
     }),
     shallowEqual
   );
@@ -26,7 +31,8 @@ const AuthModalContainer = () => {
     const nextMode = mode === "login" ? "signup" : "login";
     dispatch(changeModalMode(nextMode));
   }, [mode]);
-  const onSubmit = ({ email, username, password, repeatPassword }) => {
+  const onSubmit = e => {
+    e.preventDefault();
     mode === "login"
       ? dispatch(login({ email, password }))
       : dispatch(signup({ email, username, password, repeatPassword }));
@@ -46,6 +52,7 @@ const AuthModalContainer = () => {
   // check
   useEffect(() => {
     if (user) {
+      history.push("/");
       try {
         localStorage.setItem("user", JSON.stringify(user.user));
       } catch (e) {
@@ -53,13 +60,21 @@ const AuthModalContainer = () => {
       }
       onClose();
     }
-  }, [user]);
+  }, [history, user]);
 
   return (
     <AuthModal visible={visible} onClose={onClose}>
       <AuthForm
         mode={mode}
         onChangeMode={onChangeMode}
+        email={email}
+        setEmail={setEmail}
+        username={username}
+        setUsername={setUsername}
+        password={password}
+        setPassword={setPassword}
+        repeatPassword={repeatPassword}
+        setRepeatPassword={setRepeatPassword}
         onSubmit={onSubmit}
         error={error}
       />
@@ -67,4 +82,4 @@ const AuthModalContainer = () => {
   );
 };
 
-export default AuthModalContainer;
+export default withRouter(AuthModalContainer);
