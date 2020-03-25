@@ -5,6 +5,7 @@ import {
   getTimeFromNow,
   getPriceComma
 } from "../../../lib/utils";
+import { Link } from "react-router-dom";
 
 const Detail = ({
   image,
@@ -21,9 +22,9 @@ const Detail = ({
   return (
     <DetailWrapper>
       <Image>
-        <a>
+        <Link>
           <img src={image} />
-        </a>
+        </Link>
       </Image>
       <Profile>
         <div className="profile-wrapper">

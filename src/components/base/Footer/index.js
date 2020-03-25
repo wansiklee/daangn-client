@@ -1,25 +1,26 @@
 import React from "react";
 import { Footer, List, Author, Copyright, IconList } from "./style";
 import GithubLogo from "../../../assets/logo-github.svg";
+import { Link } from "react-router-dom";
 
 export default () => {
   return (
     <Footer>
       <List>
         <li>
-          <a href="#">이용약관</a>
+          <Link href="#">이용약관</Link>
         </li>
         <li>
-          <a href="#">개인정보 취급방침</a>
+          <Link href="#">개인정보 취급방침</Link>
         </li>
         <li>
-          <a href="#">위치기반서비스 이용약관</a>
+          <Link href="#">위치기반서비스 이용약관</Link>
         </li>
         <li>
-          <a href="#">광고주센터</a>
+          <Link href="#">광고주센터</Link>
         </li>
         <li>
-          <a href="#">ABOUT US</a>
+          <Link href="#">ABOUT US</Link>
         </li>
       </List>
       <Author>(주)당근마켓 클론 작성자 이완식</Author>

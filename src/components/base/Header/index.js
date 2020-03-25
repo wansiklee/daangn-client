@@ -8,15 +8,16 @@ import {
 } from "./style";
 import LogoImage from "../../../assets/logo-basic.svg";
 import { IoMdCreate, IoIosSearch } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 const Header = ({ onLoginButtonClick, user, value, onChange, onSubmit }) => {
   return (
     <HeaderWrapper>
       <Wrapper>
         <div className="column">
-          <a href="/">
+          <Link to="/">
             <img alt="당근마켓" width="132" src={LogoImage} />
-          </a>
+          </Link>
         </div>
         <div className="column">
           <div className="search">
@@ -37,7 +38,7 @@ const Header = ({ onLoginButtonClick, user, value, onChange, onSubmit }) => {
           {user && user.user && user.user.username ? (
             <div className="right">
               <UserInfo>{user.user.username}</UserInfo>
-              <UploadButton href="/upload">
+              <UploadButton to="/upload">
                 <IoMdCreate className="icon" />
               </UploadButton>
             </div>

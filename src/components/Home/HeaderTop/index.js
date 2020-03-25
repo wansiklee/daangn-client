@@ -11,6 +11,7 @@ import {
   KeyWordsText,
   Rank
 } from "./style";
+import { Link } from "react-router-dom";
 
 export default () => {
   return (
@@ -23,26 +24,26 @@ export default () => {
         <HeaderImage></HeaderImage>
         <TopKeywords>
           <TopKeywordsTitle>
-            <a href="#">
+            <Link to="/">
               <span>오늘의 인기 검색어</span>
-            </a>
+            </Link>
           </TopKeywordsTitle>
           <TopKeywordsList>
             <li>
-              <a href="#">
+              <Link to="/">
                 <KeyWordsText>마스크</KeyWordsText>
                 <Rank>
                   <span color={false}>-</span>
                 </Rank>
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#">
+              <Link to="/">
                 <KeyWordsText>자전거</KeyWordsText>
                 <Rank>
                   <span color={true}>NEW</span>
                 </Rank>
-              </a>
+              </Link>
             </li>
           </TopKeywordsList>
         </TopKeywords>

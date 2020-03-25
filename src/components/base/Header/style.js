@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Responsive from "../../common/Responsive";
 import Button from "../../common/Button";
+import { Link } from "react-router-dom";
 
 export const HeaderWrapper = styled.header`
   width: 100%;
@@ -60,7 +61,7 @@ export const UserInfo = styled.div`
   margin-right: 20px;
 `;
 
-export const UploadButton = styled.a`
+export const UploadButton = styled(Link)`
   width: 45px;
   background-color: ${props => props.theme.primaryColor};
   color: ${props => props.theme.bgColor};
