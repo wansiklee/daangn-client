@@ -15,7 +15,8 @@ const Detail = ({
   category,
   createdAt,
   likes,
-  comments
+  comments,
+  actionButton
 }) => {
   return (
     <DetailWrapper>
@@ -49,6 +50,7 @@ const Detail = ({
         <p className="counts">
           {`관심 ${likes.length} ∙ 댓글 ${comments.length}`}
         </p>
+        {actionButton}
       </Description>
     </DetailWrapper>
   );

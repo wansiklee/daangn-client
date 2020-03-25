@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import { getProduct } from "../../lib/api/product";
 import Detail from "../../components/product/Detail";
+import ProductActionButton from "../../components/common/ProductActionButton";
 
 const DetailContainer = ({ match }) => {
   const [image, setImage] = useState("");
@@ -52,6 +53,7 @@ const DetailContainer = ({ match }) => {
       createdAt={createdAt}
       likes={likes}
       comments={comments}
+      actionButton={<ProductActionButton />}
     />
   );
 };
