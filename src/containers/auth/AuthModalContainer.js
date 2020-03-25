@@ -40,18 +40,18 @@ const AuthModalContainer = ({ history }) => {
 
   // login / signup
   useEffect(() => {
-    if (authError) {
+    if (visible && authError) {
       setError(authError.response.data.msg);
       return;
     }
-    if (auth) {
+    if (visible && auth) {
       dispatch(check());
     }
   }, [auth, authError, dispatch]);
 
   // check
   useEffect(() => {
-    if (user) {
+    if (visible && user) {
       history.push("/");
       try {
         localStorage.setItem("user", JSON.stringify(user.user));
