@@ -17,14 +17,14 @@ const Upload = ({
   typeError,
   onDrop,
   title,
-  setTitle,
+  onTitleChange,
   category,
   onCategoryChange,
   categoryOptions,
   price,
-  setPrice,
+  onPriceChange,
   description,
-  setDescription,
+  onDescriptionChange,
   error
 }) => {
   return (
@@ -42,12 +42,16 @@ const Upload = ({
             className="form"
             placeholder="제품 이름을 입력해주세요."
             value={title}
-            onChange={e => setTitle(e.target.value)}
+            onChange={onTitleChange}
           />
         </Title>
         <Category>
-          <select className="form" value={category} onChange={onCategoryChange}>
-            <option value={undefined} disabled selected>
+          <select
+            className="form"
+            value={category || "default"}
+            onChange={onCategoryChange}
+          >
+            <option value={"default"} disabled>
               카테고리를 선택해주세요.
             </option>
             {categoryOptions.map((item, index) => (
@@ -64,7 +68,7 @@ const Upload = ({
             min="0"
             step="1000"
             value={price}
-            onChange={e => setPrice(Number(e.target.value))}
+            onChange={onPriceChange}
             placeholder="가격을 입력해주세요.(￦)"
           />
         </Price>
@@ -72,7 +76,7 @@ const Upload = ({
           <textarea
             className="form"
             value={description}
-            onChange={e => setDescription(e.target.value)}
+            onChange={onDescriptionChange}
             placeholder="제품 설명을 작성해주세요."
             style={{ height: 250 }}
           />
