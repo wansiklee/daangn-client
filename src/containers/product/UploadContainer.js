@@ -1,16 +1,58 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Upload from "../../components/product/Upload";
-import { uploadImage, productUpload } from "../../lib/api/product";
+import { uploadImage } from "../../lib/api/product";
 import { withRouter } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  changeField,
+  uploadProduct,
+  initialize
+} from "../../store/modules/upload";
 
 const UploadContainer = ({ history }) => {
   const [path, setPath] = useState("");
-  const [title, setTitle] = useState("");
-  const [category, setCategory] = useState();
-  const [price, setPrice] = useState();
-  const [description, setDescription] = useState("");
   const [typeError, setTypeError] = useState(null);
   const [error, setError] = useState(null);
+  const {
+    image,
+    title,
+    category,
+    price,
+    description,
+    product,
+    productError
+  } = useSelector(({ upload }) => ({
+    image: upload.image,
+    title: upload.title,
+    category: upload.category,
+    price: upload.price,
+    description: upload.description,
+    product: upload.product,
+    productError: upload.productError
+  }));
+  const dispatch = useDispatch();
+  const onChangeField = useCallback(payload => dispatch(changeField(payload)), [
+    dispatch
+  ]);
+
+  const onTitleChange = e => {
+    onChangeField({ key: "title", value: e.target.value });
+  };
+
+  const onCategoryChange = e => {
+    onChangeField({
+      key: "category",
+      value: e.target.value ? Number(e.target.value) : undefined
+    });
+  };
+
+  const onPriceChange = e => {
+    onChangeField({ key: "price", value: Number(e.target.value) });
+  };
+
+  const onDescriptionChange = e => {
+    onChangeField({ key: "description", value: e.target.value });
+  };
 
   const categoryOptions = [
     { value: 1, label: "가구/인테리어" },
@@ -44,32 +86,31 @@ const UploadContainer = ({ history }) => {
         data: { path }
       } = await uploadImage({ formData });
       setPath(path);
+      onChangeField({ key: "image", value: path });
     } catch (e) {
       setTypeError("사진 업로드에 실패하였습니다. 다시 시도해 주세요.");
     }
   };
 
-  const onCategoryChange = ({ target: { value } }) => {
-    setCategory(value ? Number(value) : undefined);
-  };
-
   const onSubmit = async event => {
     event.preventDefault();
-    try {
-      const {
-        data: { product }
-      } = await productUpload({
-        image: path,
-        title,
-        description,
-        price,
-        category
-      });
-      history.push(`/products/${product._id}`);
-    } catch (e) {
-      setError(e.response.data.msg);
-    }
+    dispatch(uploadProduct({ image, title, category, price, description }));
   };
+
+  useEffect(() => {
+    if (product) {
+      history.push(`/products/${product.product._id}`);
+    }
+    if (productError) {
+      setError(productError.response.data.msg);
+    }
+  }, [history, product, productError]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(initialize());
+    };
+  }, [dispatch]);
 
   return (
     <Upload
@@ -78,14 +119,14 @@ const UploadContainer = ({ history }) => {
       typeError={typeError}
       onDrop={onDrop}
       title={title}
-      setTitle={setTitle}
+      onTitleChange={onTitleChange}
       category={category}
       onCategoryChange={onCategoryChange}
       categoryOptions={categoryOptions}
       price={price}
-      setPrice={setPrice}
+      onPriceChange={onPriceChange}
       description={description}
-      setDescription={setDescription}
+      onDescriptionChange={onDescriptionChange}
       error={error}
     />
   );

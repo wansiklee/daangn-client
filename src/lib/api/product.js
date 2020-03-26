@@ -8,21 +8,14 @@ export const uploadImage = async ({ formData }) => {
 };
 
 // Upload
-export const productUpload = async ({
-  image,
-  title,
-  category,
-  price,
-  description
-}) => {
-  return await client.post("/api/products", {
+export const productUpload = ({ image, title, category, price, description }) =>
+  client.post("/api/products", {
     image,
     title,
     category,
     price,
     description
   });
-};
 
 // Product Detail
 export const getProduct = async id => {
