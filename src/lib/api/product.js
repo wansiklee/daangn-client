@@ -18,9 +18,7 @@ export const productUpload = ({ image, title, category, price, description }) =>
   });
 
 // Product Detail
-export const getProduct = async id => {
-  return await client.get(`/api/products/${id}`);
-};
+export const getProduct = id => client.get(`/api/products/${id}`);
 
 // Product List
 export const getAllProducts = async category => {

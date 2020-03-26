@@ -7,18 +7,30 @@ import {
 } from "../../../lib/utils";
 import { Link } from "react-router-dom";
 
-const Detail = ({
-  image,
-  user,
-  title,
-  description,
-  price,
-  category,
-  createdAt,
-  likes,
-  comments,
-  actionButton
-}) => {
+const Detail = ({ product, loading, error, actionButton }) => {
+  if (error) {
+    if (error.response && error.response.status === 404) {
+      return <DetailWrapper>존재하지 않는 상품입니다.</DetailWrapper>;
+    }
+    return <DetailWrapper>오류가 발생하였습니다.</DetailWrapper>;
+  }
+
+  if (loading || !product) {
+    return <DetailWrapper></DetailWrapper>;
+  }
+
+  const {
+    image,
+    user,
+    title,
+    category,
+    createdAt,
+    price,
+    description,
+    likes,
+    comments
+  } = product.data;
+
   return (
     <DetailWrapper>
       <Image>

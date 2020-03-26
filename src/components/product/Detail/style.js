@@ -4,6 +4,7 @@ export const DetailWrapper = styled.div`
   max-width: 680px;
   padding-top: 100px;
   margin: 0 auto;
+  min-height: 100vh;
 `;
 
 export const Image = styled.div`
