@@ -9,7 +9,7 @@ const ProductsList = styled.div`
   display: inline-block;
   width: 217px;
   margin-right: 33px;
-  :nth-child(4n) {
+  :nth-child(3n-2) {
     margin-right: 0;
   }
   margin-bottom: 40px;

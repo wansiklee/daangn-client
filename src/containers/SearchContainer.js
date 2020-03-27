@@ -1,33 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import Search from "../components/Search";
 import { withRouter } from "react-router-dom";
-import { getSearchProducts } from "../lib/api/product";
+import { useSelector, useDispatch } from "react-redux";
+import { searchProducts } from "../store/modules/search";
+import qs from "qs";
 
 const SearchContainer = ({ location }) => {
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
-  const [lastPage, setLastPage] = useState(1);
-  const term = decodeURI(location.search).split("=")[1];
+  const [query, setQuery] = useState("");
+  const dispatch = useDispatch();
+  const { products, error, lastPage, loading } = useSelector(
+    ({ search, loading }) => ({
+      products: search.products,
+      error: search.error,
+      lastPage: search.lastPage,
+      loading: loading["products/SEARCH_PRODUCTS"]
+    })
+  );
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        setLoading(true);
-        const {
-          data: { data },
-          headers: { lastpage }
-        } = await getSearchProducts({ term, page });
-        setData(data);
-        setLastPage(Number(lastpage));
-      } catch (e) {
-        console.log(e);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchProducts();
-  }, [term, page]);
+    const { term } = qs.parse(location.search, {
+      ignoreQueryPrefix: true
+    });
+    setQuery(term);
+    dispatch(searchProducts({ term, page }));
+  }, [dispatch, location.search, page]);
 
   const onClick = () => {
     setPage(page + 1);
@@ -35,12 +32,13 @@ const SearchContainer = ({ location }) => {
 
   return (
     <Search
+      products={products}
+      error={error}
       loading={loading}
-      products={data}
       onClick={onClick}
       page={page}
       lastPage={lastPage}
-      term={term}
+      term={query}
     />
   );
 };

@@ -28,6 +28,7 @@ export const getAllProducts = ({ category, page }) => {
 };
 
 // Product Search
-export const getSearchProducts = async ({ term, page }) => {
-  return await client.get(`/api/products/search?term=${term}&page=${page}`);
+export const getSearchProducts = ({ term, page }) => {
+  const queryString = qs.stringify({ term, page });
+  return client.get(`/api/products/search?${queryString}`);
 };

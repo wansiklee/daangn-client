@@ -7,6 +7,7 @@ import user, { userSaga } from "./user";
 import upload, { uploadSaga } from "./upload";
 import product, { productSaga } from "./product";
 import products, { productsSaga } from "./products";
+import search, { searchSaga } from "./search";
 
 const rootReducer = combineReducers({
   global,
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
   loading,
   upload,
   product,
-  products
+  products,
+  search
 });
 
 export function* rootSaga() {
@@ -24,7 +26,8 @@ export function* rootSaga() {
     userSaga(),
     uploadSaga(),
     productSaga(),
-    productsSaga()
+    productsSaga(),
+    searchSaga()
   ]);
 }
 
