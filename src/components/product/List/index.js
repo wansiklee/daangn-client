@@ -132,7 +132,9 @@ const List = ({
       ) : null}
       <ListWrapper>
         {products &&
-          products.data.map((p, i) => <ProductCard key={i} product={p} />)}
+          (home ? products.data.slice(0, 11) : products.data).map((p, i) => (
+            <ProductCard key={i} product={p} />
+          ))}
         {home && products && products.data.length !== 0 && (
           <MoreLink>
             <Link to={"/products"}>

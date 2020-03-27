@@ -22,14 +22,19 @@ export function* productsSaga() {
 
 const initialState = {
   products: null,
-  error: null
+  error: null,
+  lastPage: 1
 };
 
 const products = handleActions(
   {
-    [LIST_PRODUCTS_SUCCESS]: (state, { payload: products }) => ({
+    [LIST_PRODUCTS_SUCCESS]: (
+      state,
+      { payload: products, meta: response }
+    ) => ({
       ...state,
-      products
+      products,
+      lastPage: parseInt(response.headers["lastpage"], 10)
     }),
     [LIST_PRODUCTS_FAILURE]: (state, { payload: error }) => ({
       ...state,

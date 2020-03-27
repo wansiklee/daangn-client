@@ -38,7 +38,7 @@ const SLink = styled(Link)`
     padding: 16px;
     padding-bottom: 0;
     .card-title {
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 600;
       letter-spacing: -0.6px;
       color: #212529;
