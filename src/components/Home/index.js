@@ -1,14 +1,13 @@
 import React from "react";
 import HeaderTop from "./HeaderTop";
-import HotProducts from "./HotProducts";
 import Introduction from "./Introduction";
 import Reviews from "./Reviews";
 
-const Home = ({ products }) => {
+const Home = ({ hotProducts }) => {
   return (
     <>
       <HeaderTop />
-      <HotProducts products={products} />
+      {hotProducts}
       <Introduction />
       <Reviews />
     </>

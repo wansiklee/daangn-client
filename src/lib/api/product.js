@@ -1,4 +1,5 @@
 import client from "./client";
+import qs from "qs";
 
 // Upload image
 export const uploadImage = async ({ formData }) => {
@@ -21,10 +22,9 @@ export const productUpload = ({ image, title, category, price, description }) =>
 export const getProduct = id => client.get(`/api/products/${id}`);
 
 // Product List
-export const getAllProducts = async category => {
-  return category
-    ? await client.get(`/api/products?category=${category}`)
-    : await client.get(`/api/products`);
+export const getAllProducts = ({ category, page }) => {
+  const queryString = qs.stringify({ category, page });
+  return client.get(`/api/products?${queryString}`);
 };
 
 // Product Search

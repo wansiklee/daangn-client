@@ -1,23 +1,28 @@
-import React, { useState, useEffect } from "react";
-import { getAllProducts } from "../lib/api/product";
+import React, { useEffect } from "react";
 import Home from "../components/Home";
+import { useDispatch, useSelector } from "react-redux";
+import { listProducts } from "../store/modules/products";
+import HotProducts from "../components/Home/HotProducts";
 
 const HomeContainer = () => {
-  const [data, setData] = useState([]);
+  const dispatch = useDispatch();
+  const { products, error, loading } = useSelector(({ products, loading }) => ({
+    products: products.products,
+    error: products.error,
+    loading: loading["products/LIST_PRODUCTS"]
+  }));
+
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const {
-          data: { data }
-        } = await getAllProducts(false);
-        setData(data.slice(0, 10));
-      } catch (e) {
-        console.log(e);
+    dispatch(listProducts({ page: 1 }));
+  }, [dispatch]);
+
+  return (
+    <Home
+      hotProducts={
+        <HotProducts products={products} error={error} loading={loading} />
       }
-    };
-    fetchProducts();
-  }, []);
-  return <Home products={data} />;
+    />
+  );
 };
 
 export default HomeContainer;

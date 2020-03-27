@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ProductCard from "../../common/ProductCard";
 import { Link } from "react-router-dom";
 import { IoIosAdd } from "react-icons/io";
+import { getCategoryName } from "../../../lib/utils";
 
 const Title = styled.div`
   padding-top: 120px;
@@ -50,6 +51,7 @@ const NoProducts = styled.h1`
 `;
 
 const ListWrapper = styled.div`
+  min-height: 100vh;
   width: 980px;
   margin: 0 auto;
 `;
@@ -92,11 +94,21 @@ const PlusIcon = styled(IoIosAdd)`
 
 const List = ({
   products,
+  error,
   home,
   categoryOptions,
   category,
-  onCategoryChange
+  onCategoryChange,
+  loading
 }) => {
+  if (error) {
+    return <ListWrapper>오류가 발생하였습니다.</ListWrapper>;
+  }
+
+  if (loading || !products) {
+    return <ListWrapper></ListWrapper>;
+  }
+
   return (
     <>
       {home ? <Title>당근마켓 인기 매물</Title> : <Title>인기 중고 매물</Title>}
@@ -113,14 +125,15 @@ const List = ({
           </select>
         </Order>
       )}
-      {products.length === 0 ? (
-        <NoProducts>매물이 아직 없습니다. ㅠㅠ</NoProducts>
+      {products && products.data.length === 0 ? (
+        <NoProducts>{`${getCategoryName(
+          category
+        )} 매물이 아직 없습니다. ㅠㅠ`}</NoProducts>
       ) : null}
       <ListWrapper>
-        {products.map((p, i) => (
-          <ProductCard key={i} product={p} />
-        ))}
-        {home && (
+        {products &&
+          products.data.map((p, i) => <ProductCard key={i} product={p} />)}
+        {home && products && products.data.length !== 0 && (
           <MoreLink>
             <Link to={"/products"}>
               <div className="more-text">

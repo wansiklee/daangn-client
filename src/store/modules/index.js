@@ -6,6 +6,7 @@ import auth, { authSaga } from "./auth";
 import user, { userSaga } from "./user";
 import upload, { uploadSaga } from "./upload";
 import product, { productSaga } from "./product";
+import products, { productsSaga } from "./products";
 
 const rootReducer = combineReducers({
   global,
@@ -13,11 +14,18 @@ const rootReducer = combineReducers({
   user,
   loading,
   upload,
-  product
+  product,
+  products
 });
 
 export function* rootSaga() {
-  yield all([authSaga(), userSaga(), uploadSaga(), productSaga()]);
+  yield all([
+    authSaga(),
+    userSaga(),
+    uploadSaga(),
+    productSaga(),
+    productsSaga()
+  ]);
 }
 
 export default rootReducer;

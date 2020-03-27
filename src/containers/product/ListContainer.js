@@ -1,10 +1,27 @@
-import React, { useState, useEffect } from "react";
-import { getAllProducts } from "../../lib/api/product";
+import React, { useEffect, useState } from "react";
 import List from "../../components/product/List";
+import qs from "qs";
+import { useDispatch, useSelector } from "react-redux";
+import { listProducts } from "../../store/modules/products";
+import { withRouter } from "react-router-dom";
 
-const ListContainer = () => {
-  const [data, setData] = useState([]);
-  const [category, setCategory] = useState();
+const ListContainer = ({ location }) => {
+  const dispatch = useDispatch();
+  const { products, error, loading } = useSelector(({ products, loading }) => ({
+    products: products.products,
+    error: products.error,
+    loading: loading["products/LIST_PRODUCTS"]
+  }));
+  const [category, setCategory] = useState(null);
+
+  useEffect(() => {
+    const { page = 1 } = qs.parse(location.search, {
+      ignoreQueryPrefix: true
+    });
+    category
+      ? dispatch(listProducts({ category, page }))
+      : dispatch(listProducts({ page }));
+  }, [dispatch, location.search, category]);
 
   const categoryOptions = [
     { value: 1, label: "가구/인테리어" },
@@ -26,22 +43,11 @@ const ListContainer = () => {
     setCategory(value ? Number(value) : false);
   };
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const {
-          data: { data }
-        } = await getAllProducts(category);
-        setData(data);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    fetchProducts();
-  }, [category]);
   return (
     <List
-      products={data}
+      products={products}
+      loading={loading}
+      error={error}
       categoryOptions={categoryOptions}
       category={category}
       onCategoryChange={onCategoryChange}
@@ -49,4 +55,4 @@ const ListContainer = () => {
   );
 };
 
-export default ListContainer;
+export default withRouter(ListContainer);
