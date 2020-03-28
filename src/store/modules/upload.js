@@ -8,6 +8,7 @@ const CHANGE_FIELD = "upload/CHANGE_FIELD";
 const UPLOAD_PRODUCT = "upload/UPLOAD_PRODUCT";
 const UPLOAD_PRODUCT_SUCCESS = "upload/UPLOAD_PRODUCT_SUCCESS";
 const UPLOAD_PRODUCT_FAILURE = "upload/UPLOAD_PRODUCT_FAILURE";
+const SET_EDIT_PRODUCT = "upload/SET_EDIT_PRODUCT";
 
 export const initialize = createAction(INITIALIZE);
 export const changeField = createAction(CHANGE_FIELD, ({ key, value }) => ({
@@ -23,6 +24,10 @@ export const uploadProduct = createAction(
     price,
     description
   })
+);
+export const setEditProduct = createAction(
+  SET_EDIT_PRODUCT,
+  product => product
 );
 
 const uploadProductSaga = createRequestSaga(
@@ -40,7 +45,8 @@ const initialState = {
   price: "",
   description: "",
   product: null,
-  productError: null
+  productError: null,
+  editProductId: null
 };
 
 const upload = handleActions(
@@ -62,6 +68,15 @@ const upload = handleActions(
     [UPLOAD_PRODUCT_FAILURE]: (state, { payload: productError }) => ({
       ...state,
       productError
+    }),
+    [SET_EDIT_PRODUCT]: (state, { payload: product }) => ({
+      ...state,
+      image: product.image,
+      title: product.title,
+      category: product.category,
+      price: product.price,
+      description: product.description,
+      editProductId: product._id
     })
   },
   initialState

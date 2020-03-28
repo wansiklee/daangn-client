@@ -25,10 +25,10 @@ const ActionButton = styled.button`
   }
 `;
 
-const ProductActionButton = () => {
+const ProductActionButton = ({ onEdit }) => {
   return (
     <ProductActionButtonWrapper>
-      <ActionButton>수정</ActionButton>
+      <ActionButton onClick={onEdit}>수정</ActionButton>
       <ActionButton>삭제</ActionButton>
     </ProductActionButtonWrapper>
   );
