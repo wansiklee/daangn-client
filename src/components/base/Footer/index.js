@@ -8,19 +8,19 @@ export default () => {
     <Footer>
       <List>
         <li>
-          <Link href="#">이용약관</Link>
+          <Link to="/">이용약관</Link>
         </li>
         <li>
-          <Link href="#">개인정보 취급방침</Link>
+          <Link to="/">개인정보 취급방침</Link>
         </li>
         <li>
-          <Link href="#">위치기반서비스 이용약관</Link>
+          <Link to="/">위치기반서비스 이용약관</Link>
         </li>
         <li>
-          <Link href="#">광고주센터</Link>
+          <Link to="/">광고주센터</Link>
         </li>
         <li>
-          <Link href="#">ABOUT US</Link>
+          <Link to="/">ABOUT US</Link>
         </li>
       </List>
       <Author>(주)당근마켓 클론 작성자 이완식</Author>
