@@ -10,7 +10,6 @@ import {
 } from "../../store/modules/upload";
 
 const UploadContainer = ({ history }) => {
-  const [path, setPath] = useState("");
   const [typeError, setTypeError] = useState(null);
   const [error, setError] = useState(null);
   const {
@@ -85,7 +84,6 @@ const UploadContainer = ({ history }) => {
       const {
         data: { path }
       } = await uploadImage({ formData });
-      setPath(path);
       onChangeField({ key: "image", value: path });
     } catch (e) {
       setTypeError("사진 업로드에 실패하였습니다. 다시 시도해 주세요.");
@@ -115,7 +113,7 @@ const UploadContainer = ({ history }) => {
   return (
     <Upload
       onSubmit={onSubmit}
-      path={path}
+      image={image}
       typeError={typeError}
       onDrop={onDrop}
       title={title}

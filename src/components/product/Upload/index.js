@@ -13,7 +13,7 @@ import Dropzone from "../../common/Dropzone";
 
 const Upload = ({
   onSubmit,
-  path,
+  image,
   typeError,
   onDrop,
   title,
@@ -33,7 +33,7 @@ const Upload = ({
       <form className="form-control" onSubmit={onSubmit}>
         <File>
           <Dropzone onDrop={onDrop} />
-          {path && <img src={`/products/${path}`} />}
+          {image && <img src={`/products/${image}`} />}
         </File>
         {typeError && <ErrorMessage>{typeError}</ErrorMessage>}
         <Title>

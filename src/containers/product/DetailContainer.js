@@ -26,7 +26,7 @@ const DetailContainer = ({ match, history }) => {
   }, [dispatch, productId]);
 
   const onEdit = () => {
-    dispatch(setEditProduct(product));
+    dispatch(setEditProduct(product.data));
     history.push("/upload");
   };
 
