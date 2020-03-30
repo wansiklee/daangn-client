@@ -32,3 +32,20 @@ export const getSearchProducts = ({ term, page }) => {
   const queryString = qs.stringify({ term, page });
   return client.get(`/api/products/search?${queryString}`);
 };
+
+// Product Edit
+export const editProduct = ({
+  id,
+  image,
+  title,
+  category,
+  price,
+  description
+}) =>
+  client.patch(`/api/products/${id}`, {
+    image,
+    title,
+    category,
+    price,
+    description
+  });
