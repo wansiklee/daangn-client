@@ -25,11 +25,12 @@ const Upload = ({
   onPriceChange,
   description,
   onDescriptionChange,
-  error
+  error,
+  isEdit
 }) => {
   return (
     <UploadWrapper>
-      <h5>중고거래 상품 등록</h5>
+      <h5>{isEdit ? "상품 수정" : "중고거래 상품 등록"}</h5>
       <form className="form-control" onSubmit={onSubmit}>
         <File>
           <Dropzone onDrop={onDrop} />
@@ -82,7 +83,7 @@ const Upload = ({
           />
         </Description>
         {error && <ErrorMessage>{error}</ErrorMessage>}
-        <UploadBtn text="상품 등록하기" />
+        <UploadBtn text={`상품 ${isEdit ? "수정" : "등록"}하기`} />
       </form>
     </UploadWrapper>
   );

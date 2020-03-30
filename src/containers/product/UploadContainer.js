@@ -6,7 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   changeField,
   uploadProduct,
-  initialize
+  initialize,
+  editProduct
 } from "../../store/modules/upload";
 
 const UploadContainer = ({ history }) => {
@@ -19,7 +20,8 @@ const UploadContainer = ({ history }) => {
     price,
     description,
     product,
-    productError
+    productError,
+    editProductId
   } = useSelector(({ upload }) => ({
     image: upload.image,
     title: upload.title,
@@ -27,7 +29,8 @@ const UploadContainer = ({ history }) => {
     price: upload.price,
     description: upload.description,
     product: upload.product,
-    productError: upload.productError
+    productError: upload.productError,
+    editProductId: upload.editProductId
   }));
   const dispatch = useDispatch();
   const onChangeField = useCallback(payload => dispatch(changeField(payload)), [
@@ -90,8 +93,21 @@ const UploadContainer = ({ history }) => {
     }
   };
 
-  const onSubmit = async event => {
-    event.preventDefault();
+  const onSubmit = e => {
+    e.preventDefault();
+    if (editProductId) {
+      dispatch(
+        editProduct({
+          id: editProductId,
+          image,
+          title,
+          category,
+          price,
+          description
+        })
+      );
+      return;
+    }
     dispatch(uploadProduct({ image, title, category, price, description }));
   };
 
@@ -126,6 +142,7 @@ const UploadContainer = ({ history }) => {
       description={description}
       onDescriptionChange={onDescriptionChange}
       error={error}
+      isEdit={editProductId}
     />
   );
 };
