@@ -5,6 +5,7 @@ import ProductActionButton from "../../components/common/ProductActionButton";
 import { useSelector, useDispatch } from "react-redux";
 import { detailProduct, unloadProduct } from "../../store/modules/product";
 import { setEditProduct } from "../../store/modules/upload";
+import { removeProduct } from "../../lib/api/product";
 
 const DetailContainer = ({ match, history }) => {
   const { productId } = match.params;
@@ -30,15 +31,28 @@ const DetailContainer = ({ match, history }) => {
     history.push("/upload");
   };
 
+  const onRemove = async () => {
+    try {
+      await removeProduct(productId);
+      history.push("/");
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const ownProduct =
-    (user && user.user._id) === (product && product.data.user._id);
+    (user && user.user && user.user._id) === (product && product.data.user._id);
 
   return (
     <Detail
       product={product}
       loading={loading}
       error={error}
-      actionButton={ownProduct && <ProductActionButton onEdit={onEdit} />}
+      actionButton={
+        ownProduct && (
+          <ProductActionButton onEdit={onEdit} onRemove={onRemove} />
+        )
+      }
     />
   );
 };

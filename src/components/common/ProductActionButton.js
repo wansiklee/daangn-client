@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import AskRemoveModal from "./AskRemoveModal";
 
 const ProductActionButtonWrapper = styled.div`
   display: flex;
@@ -25,12 +26,27 @@ const ActionButton = styled.button`
   }
 `;
 
-const ProductActionButton = ({ onEdit }) => {
+const ProductActionButton = ({ onEdit, onRemove }) => {
+  const [visible, setVisible] = useState(false);
+
+  const onRemoveClick = () => setVisible(true);
+  const onCancel = () => setVisible(false);
+  const onConfirm = () => {
+    setVisible(false);
+    onRemove();
+  };
   return (
-    <ProductActionButtonWrapper>
-      <ActionButton onClick={onEdit}>수정</ActionButton>
-      <ActionButton>삭제</ActionButton>
-    </ProductActionButtonWrapper>
+    <>
+      <ProductActionButtonWrapper>
+        <ActionButton onClick={onEdit}>수정</ActionButton>
+        <ActionButton onClick={onRemoveClick}>삭제</ActionButton>
+      </ProductActionButtonWrapper>
+      <AskRemoveModal
+        visible={visible}
+        onConfirm={onConfirm}
+        onCancel={onCancel}
+      />
+    </>
   );
 };
 

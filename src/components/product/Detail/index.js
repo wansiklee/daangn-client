@@ -34,7 +34,7 @@ const Detail = ({ product, loading, error, actionButton }) => {
   return (
     <DetailWrapper>
       <Image>
-        <Link>
+        <Link to={`/products/${product && product.data._id}`}>
           <img src={image} />
         </Link>
       </Image>

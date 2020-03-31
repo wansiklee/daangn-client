@@ -49,3 +49,6 @@ export const editProduct = ({
     price,
     description
   });
+
+// Product Delete
+export const removeProduct = id => client.delete(`/api/products/${id}`);

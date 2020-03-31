@@ -3,8 +3,6 @@ import "moment/locale/ko";
 
 export const getCategoryName = categoryNumber => {
   switch (categoryNumber) {
-    case 0:
-      return "디지털/가전";
     case 1:
       return "가구/인테리어";
     case 2:
@@ -28,6 +26,8 @@ export const getCategoryName = categoryNumber => {
     case 11:
       return "반려동물용품";
     case 12:
+      return "디지털/가전";
+    case 13:
       return "기타 중고물품";
     default:
       return "";
