@@ -57,7 +57,6 @@ const SLink = styled(NavLink)`
 `;
 
 const Profile = ({ user, products, error, loading }) => {
-  console.log(user);
   if (error) {
     if (error.response && error.response.status === 404) {
       return <ProfileWrapper>존재하지 않는 유저입니다.</ProfileWrapper>;

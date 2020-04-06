@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const DetailWrapper = styled.div`
   max-width: 680px;
@@ -28,25 +29,26 @@ export const Profile = styled.div`
     border-bottom: 1px solid #e9ecef;
     display: flex;
     justify-content: space-between;
-    .profile-align {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      .profile-image {
-        img {
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-        }
-      }
-      .profile-left {
-        margin-left: 8px;
-        .username {
-          font-weight: 600;
-          line-height: 1.5;
-          color: #212529;
-        }
-      }
+  }
+`;
+
+export const ProfileLink = styled(Link)`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  .profile-image {
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+  }
+  .profile-left {
+    margin-left: 8px;
+    .username {
+      font-weight: 600;
+      line-height: 1.5;
+      color: #212529;
     }
   }
 `;

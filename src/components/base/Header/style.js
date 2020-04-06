@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 export const HeaderWrapper = styled.header`
   width: 100%;
   position: fixed;
-  background-color: ${props => props.theme.bgColor};
-  box-shadow: 0 3px 5px 0 ${props => props.theme.shadowColor};
+  background-color: ${(props) => props.theme.bgColor};
+  box-shadow: 0 3px 5px 0 ${(props) => props.theme.shadowColor};
   z-index: 2;
 `;
 
@@ -55,19 +55,19 @@ export const Wrapper = styled(Responsive)`
   }
 `;
 
-export const UserInfo = styled.div`
+export const UserInfo = styled(Link)`
   font-weight: bold;
-  color: ${props => props.theme.primaryColor};
+  color: ${(props) => props.theme.primaryColor};
   margin-right: 20px;
 `;
 
 export const UploadButton = styled(Link)`
   width: 45px;
-  background-color: ${props => props.theme.primaryColor};
-  color: ${props => props.theme.bgColor};
+  background-color: ${(props) => props.theme.primaryColor};
+  color: ${(props) => props.theme.bgColor};
   border-radius: 4px;
   &:hover {
-    background-color: ${props => props.theme.primaryDarker};
+    background-color: ${(props) => props.theme.primaryDarker};
   }
 
   .icon {
@@ -77,11 +77,11 @@ export const UploadButton = styled(Link)`
 
 export const LoginButton = styled(Button)`
   width: 100px;
-  background-color: ${props => props.theme.bgColor};
-  color: ${props => props.theme.primaryColor};
-  border: solid 1px ${props => props.theme.primaryColor};
+  background-color: ${(props) => props.theme.bgColor};
+  color: ${(props) => props.theme.primaryColor};
+  border: solid 1px ${(props) => props.theme.primaryColor};
   &:hover {
-    background-color: ${props => props.theme.primaryColor};
-    color: ${props => props.theme.bgColor};
+    background-color: ${(props) => props.theme.primaryColor};
+    color: ${(props) => props.theme.bgColor};
   }
 `;

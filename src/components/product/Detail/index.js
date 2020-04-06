@@ -1,9 +1,15 @@
 import React from "react";
-import { DetailWrapper, Image, Profile, Description } from "./style";
+import {
+  DetailWrapper,
+  Image,
+  ProfileLink,
+  Profile,
+  Description,
+} from "./style";
 import {
   getCategoryName,
   getTimeFromNow,
-  getPriceComma
+  getPriceComma,
 } from "../../../lib/utils";
 import { Link } from "react-router-dom";
 
@@ -28,7 +34,7 @@ const Detail = ({ product, loading, error, actionButton }) => {
     price,
     description,
     likes,
-    comments
+    comments,
   } = product.data;
 
   return (
@@ -40,14 +46,14 @@ const Detail = ({ product, loading, error, actionButton }) => {
       </Image>
       <Profile>
         <div className="profile-wrapper">
-          <div className="profile-align">
+          <ProfileLink to={`/${user._id}`}>
             <div className="profile-image">
               <img src={user.thumbnail} />
             </div>
             <div className="profile-left">
               <div className="username">{user.username}</div>
             </div>
-          </div>
+          </ProfileLink>
         </div>
       </Profile>
       <Description>

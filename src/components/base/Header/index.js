@@ -4,7 +4,7 @@ import {
   Wrapper,
   UserInfo,
   UploadButton,
-  LoginButton
+  LoginButton,
 } from "./style";
 import LogoImage from "../../../assets/logo-basic.svg";
 import { IoMdCreate, IoIosSearch } from "react-icons/io";
@@ -37,7 +37,7 @@ const Header = ({ onLoginButtonClick, user, value, onChange, onSubmit }) => {
         <div className="column">
           {user && user.user && user.user.username ? (
             <div className="right">
-              <UserInfo>{user.user.username}</UserInfo>
+              <UserInfo to={`/${user.user._id}`}>{user.user.username}</UserInfo>
               <UploadButton to="/upload">
                 <IoMdCreate className="icon" />
               </UploadButton>
