@@ -81,7 +81,7 @@ const Profile = ({ user, products, error, loading }) => {
           <ul>
             <li>
               <SLink
-                to={`/${user._id}`}
+                to={`/users/${user._id}`}
                 activeClassName="selected"
                 exact
               >{`판매 물품 (${user.products.length})`}</SLink>

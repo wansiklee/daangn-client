@@ -28,7 +28,7 @@ const App = () => {
           <Route path="/products" component={ProductListPage} exact />
           <Route path="/products/:productId" component={ProductDetailPage} />
           <Route path="/search" component={SearchPage} />
-          <Route path="/:userId" component={ProfilePage} />
+          <Route path="/users/:userId" component={ProfilePage} />
           <Redirect from="*" to="/" />
         </Switch>
         <Global />

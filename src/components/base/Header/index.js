@@ -37,7 +37,9 @@ const Header = ({ onLoginButtonClick, user, value, onChange, onSubmit }) => {
         <div className="column">
           {user && user.user && user.user.username ? (
             <div className="right">
-              <UserInfo to={`/${user.user._id}`}>{user.user.username}</UserInfo>
+              <UserInfo to={`/users/${user.user._id}`}>
+                {user.user.username}
+              </UserInfo>
               <UploadButton to="/upload">
                 <IoMdCreate className="icon" />
               </UploadButton>

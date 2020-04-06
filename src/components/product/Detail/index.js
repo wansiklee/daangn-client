@@ -46,7 +46,7 @@ const Detail = ({ product, loading, error, actionButton }) => {
       </Image>
       <Profile>
         <div className="profile-wrapper">
-          <ProfileLink to={`/${user._id}`}>
+          <ProfileLink to={`/users/${user._id}`}>
             <div className="profile-image">
               <img src={user.thumbnail} />
             </div>
