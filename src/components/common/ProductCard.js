@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import { getPriceComma } from "../../lib/utils";
 
@@ -10,9 +10,20 @@ const CardWrapper = styled.div`
   border: 1px solid #e9ecef;
   width: calc(25% - 34px);
   margin-right: 34px;
-  :nth-child(4n) {
-    margin-right: 0;
-  }
+  ${(props) =>
+    props.user
+      ? css`
+          width: calc(33% - 14px);
+          margin-right: 16px;
+          :nth-child(3n) {
+            margin-right: 0;
+          }
+        `
+      : css`
+          :nth-child(4n) {
+            margin-right: 0;
+          }
+        `}
   margin-bottom: 40px;
   transition: transform 0.3s, box-shadow 0.3s;
   &:hover {
@@ -61,15 +72,19 @@ const SLink = styled(Link)`
   }
 `;
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, user }) => {
   return (
-    <CardWrapper>
+    <CardWrapper user={user}>
       <SLink to={`/products/${product.id}`}>
         <div className="card-image">
           <img src={`/products/${product.image}`} />
         </div>
         <div className="card-desc">
-          <h2 className="card-title">{product.title}</h2>
+          <h2 className="card-title">
+            {product.title.length < 12
+              ? product.title
+              : `${product.title.slice(0, 12)}...`}
+          </h2>
           <div className="card-price">{getPriceComma(product.price)}원</div>
           <div className="card-counts">
             <span>관심 {product.likes.length} ∙ </span>

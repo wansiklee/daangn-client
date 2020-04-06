@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect
+  Redirect,
 } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import Theme from "./lib/themes/Theme";
@@ -16,6 +16,7 @@ const UploadPage = loadable(() => import("./pages/UploadPage"));
 const ProductListPage = loadable(() => import("./pages/ProductListPage"));
 const ProductDetailPage = loadable(() => import("./pages/ProductDetailPage"));
 const SearchPage = loadable(() => import("./pages/SearchPage"));
+const ProfilePage = loadable(() => import("./pages/ProfilePage"));
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/products" component={ProductListPage} exact />
           <Route path="/products/:productId" component={ProductDetailPage} />
           <Route path="/search" component={SearchPage} />
+          <Route path="/:userId" component={ProfilePage} />
           <Redirect from="*" to="/" />
         </Switch>
         <Global />

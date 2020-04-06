@@ -8,6 +8,7 @@ import upload, { uploadSaga } from "./upload";
 import product, { productSaga } from "./product";
 import products, { productsSaga } from "./products";
 import search, { searchSaga } from "./search";
+import profile, { profileSaga } from "./profile";
 
 const rootReducer = combineReducers({
   global,
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   upload,
   product,
   products,
-  search
+  search,
+  profile,
 });
 
 export function* rootSaga() {
@@ -27,7 +29,8 @@ export function* rootSaga() {
     uploadSaga(),
     productSaga(),
     productsSaga(),
-    searchSaga()
+    searchSaga(),
+    profileSaga(),
   ]);
 }
 
