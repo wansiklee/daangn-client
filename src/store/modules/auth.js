@@ -13,7 +13,7 @@ const SIGNUP_FAILURE = "auth/SIGNUP_FAILURE";
 
 export const login = createAction(LOGIN, ({ email, password }) => ({
   email,
-  password
+  password,
 }));
 
 export const signup = createAction(
@@ -22,7 +22,7 @@ export const signup = createAction(
     email,
     username,
     password,
-    repeatPassword
+    repeatPassword,
   })
 );
 
@@ -35,7 +35,7 @@ export function* authSaga() {
 
 const initialState = {
   auth: null,
-  authError: null
+  authError: null,
 };
 
 const auth = handleActions(
@@ -43,21 +43,21 @@ const auth = handleActions(
     [LOGIN_SUCCESS]: (state, action) => ({
       ...state,
       authError: null,
-      auth: action.payload
+      auth: action.payload,
     }),
     [LOGIN_FAILURE]: (state, action) => ({
       ...state,
-      authError: action.payload
+      authError: action.payload,
     }),
     [SIGNUP_SUCCESS]: (state, action) => ({
       ...state,
       authError: null,
-      auth: action.payload
+      auth: action.payload,
     }),
     [SIGNUP_FAILURE]: (state, action) => ({
       ...state,
-      authError: action.payload
-    })
+      authError: action.payload,
+    }),
   },
   initialState
 );

@@ -10,8 +10,11 @@ export const signup = ({ email, username, password, repeatPassword }) =>
     email,
     username,
     password,
-    repeatPassword
+    repeatPassword,
   });
 
 // Check
 export const check = () => client.get("/api/auth/check");
+
+// Logout
+export const logout = () => client.post("/api/auth/logout");

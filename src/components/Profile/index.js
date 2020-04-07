@@ -30,6 +30,7 @@ const User = styled.section`
     font-size: 22px;
     font-weight: 600;
     margin-left: 40px;
+    margin-right: 10px;
   }
 `;
 
@@ -56,7 +57,7 @@ const SLink = styled(NavLink)`
   padding: 8px 20px;
 `;
 
-const Profile = ({ user, products, error, loading }) => {
+const Profile = ({ user, products, error, loading, logoutButton }) => {
   if (error) {
     if (error.response && error.response.status === 404) {
       return <ProfileWrapper>존재하지 않는 유저입니다.</ProfileWrapper>;
@@ -75,6 +76,7 @@ const Profile = ({ user, products, error, loading }) => {
           <img src={user.thumbnail} alt={user.username} />
         </div>
         <h2 className="profile-nickname">{user.username}</h2>
+        {logoutButton}
       </User>
       <Detail>
         <section className="user-filter">
