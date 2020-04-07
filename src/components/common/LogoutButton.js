@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import AskLogoutModal from "./AskLogoutModal";
 
 const LogoutButtonWrapper = styled.div``;
 
@@ -19,10 +20,25 @@ const LogoutButton = styled.button`
 `;
 
 const ProductActionButton = ({ onLogout }) => {
+  const [visible, setVisible] = useState(false);
+
+  const onLogoutClick = () => setVisible(true);
+  const onCancel = () => setVisible(false);
+  const onConfirm = () => {
+    setVisible(false);
+    onLogout();
+  };
   return (
-    <LogoutButtonWrapper>
-      <LogoutButton onClick={onLogout}>로그아웃</LogoutButton>
-    </LogoutButtonWrapper>
+    <>
+      <LogoutButtonWrapper>
+        <LogoutButton onClick={onLogoutClick}>로그아웃</LogoutButton>
+      </LogoutButtonWrapper>
+      <AskLogoutModal
+        visible={visible}
+        onConfirm={onConfirm}
+        onCancel={onCancel}
+      />
+    </>
   );
 };
 
